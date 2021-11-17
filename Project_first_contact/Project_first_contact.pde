@@ -1,4 +1,4 @@
-int wwidth = 800;
+int wwidth = 900;
 int wheight = 800;
 
 final SceneManager sceneManager = new SceneManager();
