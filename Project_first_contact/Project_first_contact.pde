@@ -1,5 +1,10 @@
 int wwidth = 800;
 int wheight = 800;
+String[] testingout = new String[3]; {
+  testingout[0] = "Hi";
+  testingout[1] = "How are you?";
+  testingout[2] = "I'm doing fine";
+}
 
 final SceneManager sceneManager = new SceneManager();
 final InventoryManager inventoryManager = new InventoryManager();
@@ -26,7 +31,7 @@ void setup()
   TextObject loupe03 = new TextObject("largeText_scene01", 46, 687, 50, 50, "zoom.png", "This object has a way longer text. It shows that the windows can be of varied size according to the text.");
   loupe03.setHoverImage("zoomIn.png");
   scene01.addGameObject(loupe03);
-  TextObject loupe04 = new multiFileText("largeText_scene01", 100, 687, 50, 50, "zoom.png", "This object has a way longer text. It shows that the windows can be of varied size according to the text.", "Hi, I exist");
+  TextObject loupe04 = new multiFileText("smallText_scene01", 500, 500, 50, 50, "zoom.png", testingout);
   loupe04.setHoverImage("zoomIn.png");
   scene01.addGameObject(loupe04);
   MoveToSceneObject object2 = new MoveToSceneObject("goToScene02_scene01", 708, 445, 50, 50, "arrowRight.png", "scene02");
@@ -50,12 +55,15 @@ void setup()
   ScrollingTextObject endGame = new ScrollingTextObject("smallText_scene04", 430, 590, 50, 50, "medal1.png", "'This is a filler text to find out how big we can get a singular string \n I am also testing how line breaks work \n and now im checking if it works multiple times \n even if i use a lot of them wnt think we're going to be using a literal buttload of characters i wanna see if the textarea will want to perish'", 0.01f);
   scene04.addGameObject(endGame);
   
-  //Scene scene05 = ...
+  Scene scene05 = new Scene("scene05", "back05.png");
+  MoveToSceneObject object9 = new MoveToSceneObject("goBack_scene01", 203, 673, 50, 50, "arrowDown.png", true);
+  scene05.addGameObject(object9);
   
   sceneManager.addScene(scene01);
   sceneManager.addScene(scene02);
   sceneManager.addScene(scene03);
   sceneManager.addScene(scene04);
+  sceneManager.addScene(scene05);
 }
 
 void draw()
