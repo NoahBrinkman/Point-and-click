@@ -26,6 +26,9 @@ void setup()
   TextObject loupe03 = new TextObject("largeText_scene01", 46, 687, 50, 50, "zoom.png", "This object has a way longer text. It shows that the windows can be of varied size according to the text.");
   loupe03.setHoverImage("zoomIn.png");
   scene01.addGameObject(loupe03);
+  TextObject loupe04 = new multiFileText("largeText_scene01", 100, 687, 50, 50, "zoom.png", "This object has a way longer text. It shows that the windows can be of varied size according to the text.", "Hi, I exist");
+  loupe04.setHoverImage("zoomIn.png");
+  scene01.addGameObject(loupe04);
   MoveToSceneObject object2 = new MoveToSceneObject("goToScene02_scene01", 708, 445, 50, 50, "arrowRight.png", "scene02");
   scene01.addGameObject(object2);
   MoveToSceneObject restaurantSceneMoveTo = new MoveToSceneObject("goToScene06_scene01", 388, 440, 50, 50, "arrowUp.png", "scene05");
