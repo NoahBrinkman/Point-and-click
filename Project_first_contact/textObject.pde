@@ -15,6 +15,7 @@ class TextObject extends GameObject {
   @Override
   public void draw() {
     super.draw();
+    textSize(11);
     if(displayText) {
       fill(255);
       rect(this.x, this.y, textWidth + 30, textHeight, 8);
@@ -36,7 +37,7 @@ class TextObject extends GameObject {
     
     if(text.contains("\n")){
       int counter = text.split("\n", -1).length - 1;
-      textHeight += (counter * 15);
+      textHeight += (counter * 25);
     }
     while(remaining > 300)
     {

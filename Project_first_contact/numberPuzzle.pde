@@ -37,6 +37,7 @@ class NumberPuzzle extends MoveToSceneObject {
     void draw() {
     super.draw();
     String solutionAttempt = "";
+    fill(255);
     for (int i = 0; i < numbersWithArrows.size(); i++) {
       numbersWithArrows.get(i).update();
       solutionAttempt += numbersWithArrows.get(i).currentNumber;
