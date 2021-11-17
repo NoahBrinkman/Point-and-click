@@ -22,6 +22,11 @@ class Scene {
     markedForDeathGameObjects.add(object);
   }
   
+  public void awake(){
+    for(GameObject object : gameObjects){ object.awake();
+    }
+  }
+  
   public void updateScene() {
     if(markedForDeathGameObjects.size() > 0) {
       for(GameObject object : markedForDeathGameObjects) {

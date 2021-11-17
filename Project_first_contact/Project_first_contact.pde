@@ -47,12 +47,20 @@ void setup()
   ScrollingTextObject endGame = new ScrollingTextObject("smallText_scene04", 430, 590, 50, 50, "medal1.png", "'This is a filler text to find out how big we can get a singular string \n I am also testing how line breaks work \n and now im checking if it works multiple times \n even if i use a lot of them wnt think we're going to be using a literal buttload of characters i wanna see if the textarea will want to perish'", 0.01f);
   scene04.addGameObject(endGame);
   
-  //Scene scene05 = ...
+  Scene scene05 = new Scene("scene05", "back05.png");
+  NumberPuzzle puzzle = new NumberPuzzle("numberPuzzle01",100, height / 2, 100,100, "scene06",1013);
+  scene05.gameObjects.add(puzzle);
+  
+  Scene scene06 = new Scene("scene06","back06.png");
+  MoveToSceneObject object9 = new MoveToSceneObject("goBack_scene06", 350, 700, 50, 50, "arrowDown.png", true);
+  scene06.addGameObject(object9);
   
   sceneManager.addScene(scene01);
   sceneManager.addScene(scene02);
   sceneManager.addScene(scene03);
   sceneManager.addScene(scene04);
+  sceneManager.addScene(scene05);
+  sceneManager.addScene(scene06);
 }
 
 void draw()

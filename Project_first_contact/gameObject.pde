@@ -33,6 +33,8 @@ class GameObject {
     hasHoverImage = true;
   }
   
+  public void awake(){}
+  
   public void draw() {
     if(hasImage) {
       if(mouseIsHovering && hasHoverImage) {
