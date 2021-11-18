@@ -30,7 +30,10 @@ void setup()
   scene01.addGameObject(object2);
   MoveToSceneObject restaurantSceneMoveTo = new MoveToSceneObject("goToScene06_scene01", 388, 440, 50, 50, "arrowUp.png", "scene05");
   scene01.addGameObject(restaurantSceneMoveTo);
-  
+  multiPartScrollingTextObject loupe04 = new multiPartScrollingTextObject("smallText_scene04", 300, 400, 50, 50, "zoom.png", " This object has a text! @ I can split it without it crashing. Now this is going to take some time to fix because it doesn't want to work apparently, how is it going? @ Idk, how's it going with you?", 0.01f);
+  loupe04.setHoverImage("zoomIn.png");
+  scene01.addGameObject(loupe04);
+
   Scene scene02 = new Scene("scene02", "back02.png");
   MoveToSceneObject object3 = new MoveToSceneObject("goBack_scene02", 350, 700, 50, 50, "arrowDown.png", true);
   scene02.addGameObject(object3);
