@@ -10,8 +10,8 @@ class MultiPartTextObject extends TextObject {
     super(identifier, x, y, owidth, oheight, gameObjectImageFile, text);
     textParts = text.split("@");
     String longestString = textParts[0]; 
-    for(int i = 0; i < textParts.length; i++){
-      if(textParts[i].length() > longestString.length()){
+    for (int i = 0; i < textParts.length; i++) {
+      if (textParts[i].length() > longestString.length()) {
         longestString = textParts[i];
       }
     }
@@ -32,17 +32,31 @@ class MultiPartTextObject extends TextObject {
 
   @Override
     public void mouseClicked() {
-    super.displayText = false;
     if (mouseIsHovering) { 
       super.displayText = true;
-      if (currentIndex + 1 >= textParts.length) {
+      
+    }
+    if (currentIndex + 1 >= textParts.length) {
         super.displayText = false;
         currentIndex = -1;
       } else {
         currentIndex++;
       }
+  }
+
+  @Override
+    void mouseMoved() {
+    mouseIsHovering = false;
+    if (super.displayText) {
+      if (mouseX >= x && mouseX <= x + super.textWidth &&
+        mouseY >= y && mouseY <= y + super.textHeight) {
+        mouseIsHovering = true;
+      }
     } else {
-      currentIndex = -1;
+      if (mouseX >= x && mouseX <= x + owidth &&
+        mouseY >= y && mouseY <= y + oheight) {
+        mouseIsHovering = true;
+      }
     }
   }
 }
