@@ -15,6 +15,7 @@ class TextObject extends GameObject {
   @Override
     public void draw() {
     super.draw();
+    drawText();
   }
 
   void drawText() {
