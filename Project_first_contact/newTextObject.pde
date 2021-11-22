@@ -84,6 +84,7 @@ class NewTextObject {
   void awake() {
     if (startOnAwake) {
       isActive = true;
+      startOnAwake = false;
     }
   }
 

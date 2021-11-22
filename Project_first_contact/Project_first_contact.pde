@@ -44,8 +44,14 @@ void setup()
   bedRoomScene.addTextObjecs(roomIntro);
 
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
-  MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 650, 420, 50, 50, "arrowRight.png", "bedRoom");
+  MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 650, 420, 50, 50, "arrowUp.png", "bedRoom");
   livingRoomScene.addGameObject(toBedRoom);
+  MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveToBedRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
+  livingRoomScene.addGameObject(tostudyRoom);
+
+  Scene studyRoomScene = new Scene("studyRoom", "studyRoom.png");
+  MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 200, 650, 50, 50, "arrowLeft.png", true);
+  studyRoomScene.addGameObject(tolivingRoomFromStudy);
   /*
   NewTextObject objectives = new NewTextObject("Objectives:\n0/1 Pet your dog\n0/1Collect a family pitcure\n0/1Say goodbye.", width - 225, 50, "", 15, color(255));
    uIManager.addToUI(objectives);
@@ -105,6 +111,7 @@ void setup()
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
   sceneManager.addScene(livingRoomScene);
+  sceneManager.addScene(studyRoomScene);
   sceneManager.getCurrentScene().awake();
   uIManager.awake();
 }

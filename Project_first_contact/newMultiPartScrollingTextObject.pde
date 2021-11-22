@@ -37,6 +37,7 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
     if(super.startOnAwake){
       currentIndex  = 0;
       isActive = true;
+      super.startOnAwake = false;
     }
   }
 
