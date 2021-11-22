@@ -32,8 +32,8 @@ class MultiPartTextObject extends TextObject {
 
   @Override
     public void mouseClicked() {
-    if (mouseIsHovering || super.displayText) { 
-      super.displayText = true;
+    if (mouseIsHovering || this.displayText) { 
+      this.displayText = true;
       
     if (currentIndex + 1 >= textParts.length) {
         super.displayText = false;
@@ -47,7 +47,7 @@ class MultiPartTextObject extends TextObject {
   @Override
     void mouseMoved() {
     mouseIsHovering = false;
-    if (super.displayText) {
+    if (this.displayText) {
       if (mouseX >= x && mouseX <= x + super.textWidth &&
         mouseY >= y && mouseY <= y + super.textHeight) {
         mouseIsHovering = true;

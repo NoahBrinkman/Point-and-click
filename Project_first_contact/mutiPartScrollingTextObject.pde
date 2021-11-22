@@ -117,8 +117,8 @@ class multiPartScrollingTextObject extends TextObject {
   @Override
     public void mouseClicked() {
     super.displayText = false;
-    if (mouseIsHovering || super.displayText) { 
-      super.displayText = true;
+    if (mouseIsHovering || this.displayText) { 
+      this.displayText = true;
       if (currentIndex + 1 >= textParts.length) {
         super.displayText = false;
         currentIndex = -1;
