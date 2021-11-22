@@ -1,11 +1,12 @@
 class TextManager {
 
   ArrayList<NewTextObject> textObjects;
-
+  ArrayList<NewTextObject> markedForDeathTextObjects;
   NewTextObject currentTextObject;
 
   TextManager() {
     textObjects = new ArrayList<NewTextObject>();
+    markedForDeathTextObjects = new ArrayList<NewTextObject>();
     currentTextObject = new NewTextObject();
   }
 
@@ -35,17 +36,26 @@ class TextManager {
     for (NewTextObject object : textObjects) {
       object.draw();
     }
+    wipeMarkedForDeath();
   }
 
   void awake() {
     for (NewTextObject object : textObjects) {
       object.awake();
-      if(object.isActive){
+      if (object.isActive) {
         break;
       }
-    } 
+    }
   }
 
+  void wipeMarkedForDeath() {
+    for(int i = 0; i < markedForDeathTextObjects.size(); i++){
+      if(textObjects.contains(markedForDeathTextObjects.get(i))){
+        textObjects.remove(textObjects.indexOf(markedForDeathTextObjects.get(i)));
+      }
+    }
+    markedForDeathTextObjects = new ArrayList<NewTextObject>();
+  }
 
   void mouseClicked() {
     for (NewTextObject object : textObjects) {

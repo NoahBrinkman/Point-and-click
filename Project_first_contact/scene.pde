@@ -20,7 +20,11 @@ class Scene {
   public void addTextObjecs(NewTextObject object) {
     textManager.textObjects.add(object);
   }
-
+  
+    public void removeFromTextObjecs(NewTextObject object) {
+    textManager.markedForDeathTextObjects.add(object);
+  }
+  
   public void addGameObject(GameObject object) {
     recentlyAddedGameObjects.add(object);
   }

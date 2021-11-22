@@ -22,9 +22,9 @@ void setup()
   MoveToSceneObject object7 = new MoveToSceneObject("goToScene04_scene01", 206, 461, 50, 50, "arrowUp.png", "scene04");
 
   Scene scene01 = new Scene("scene01", "back01.png");
-  RequireObject loupe01 = new RequireObject("requiresApple_scene01", 206, 461, 50, 50, "zoom.png", "You need an Apple before getting here!", apple, object7);
+  RequireObject loupe01 = new RequireObject("You need an apple to get in here",  width / 2 - (int)textWidth("You need an apple to get in here") / 2, height - 100, "", 12, color(0),  206, 461,"zoom.png", 50, 50, apple, object7);
   loupe01.setHoverImage("zoomIn.png");
-  scene01.addGameObject(loupe01);
+  scene01.addTextObjecs(loupe01);
   MultiPartTextObject loupe02 = new MultiPartTextObject("smallText_scene01", 541, 445, 50, 50, "zoom.png", "This object @has a text!@I can split it@Without it crashing");
   loupe02.setHoverImage("zoomIn.png");
   scene01.addGameObject(loupe02);
