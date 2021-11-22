@@ -18,6 +18,7 @@ void setup()
 
   Scene startScene = new Scene("startScene", "blackground.png");
   startScene.useUI = false;
+
   NewMultiPartScrollingTextObject scrollingObjectForStart = new NewMultiPartScrollingTextObject("*There is nothing. Only a warm darkness and this deep feeling of regret*@*An inordinate amount of time passes as you still feel nothing*@*Suddenly, an awareness creeps up on you*", 
     width / 2 - 250, height / 2, "", 15, color(255), 0.04f);
   scrollingObjectForStart.loadOnAwake();
@@ -29,13 +30,22 @@ void setup()
   NewMultiPartScrollingTextObject roomIntro = new NewMultiPartScrollingTextObject("*As you open your eyes you find yourself in a nostalgic place.\nSomewhere where you’ve once felt love, hate, fear, disgust, anger\nand, most importantly, regret*@*While you look around trying to recognize this place, you see a body. Lying in bed. Lifeless*", 
     width / 2 - 250, height -120, "", 15, color(0), 0.02f);
   roomIntro.loadOnAwake();
+
   NewMultiPartScrollingTextObject bodyInteraction = new NewMultiPartScrollingTextObject("*Moving closer to the body you start recognizing its sad appearance.\nIts curly grey hair, the lifeless blue eyes looking at the void and its moustache.\nIts burly moustache.*@“Is that me?\n“Am I…\nDEAD?!”@*You keep looking at the body, searching for any signs of life*@*Now it only looks like a lifeless blob to you*@“I’m not ready.\nI don’t want to go.\nNot without saying goodbye.”@*You move away from the body. As if you’re scared of it. Scared of yourself*", 
-    width / 2 - 250, height -110, "", 15, color(0),150,520,"zoom.png",50,50, 0.01f);
-        bedRoomScene.addTextObjecs(bodyInteraction);
-      NewMultiPartScrollingTextObject nightStandInteraction = new NewMultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people* ",width / 2 - 250, height -110, "", 15, color(0),550,450,"zoom.png",50,50, 0.01f);
-      //bodyInteraction.loadSceneOnComplete("nightStand");
-    bedRoomScene.addTextObjecs(nightStandInteraction);
+    width / 2 - 250, height -110, "", 15, color(0), 150, 520, "zoom.png", 50, 50, 0.01f);
+  bedRoomScene.addTextObjecs(bodyInteraction);
+  NewMultiPartScrollingTextObject nightStandInteraction = new NewMultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people* ", width / 2 - 250, height -110, "", 15, color(0), 550, 450, "zoom.png", 50, 50, 0.01f);
+
+  MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 330, 690, 50, 50, "arrowLeft.png", "livingRoom");
+
+  //bodyInteraction.loadSceneOnComplete("nightStand");
+  bedRoomScene.addGameObject(toLivingRoom);
+  bedRoomScene.addTextObjecs(nightStandInteraction);
   bedRoomScene.addTextObjecs(roomIntro);
+
+  Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
+  MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 650, 420, 50, 50, "arrowRight.png", "bedRoom");
+  livingRoomScene.addGameObject(toBedRoom);
   /*
   NewTextObject objectives = new NewTextObject("Objectives:\n0/1 Pet your dog\n0/1Collect a family pitcure\n0/1Say goodbye.", width - 225, 50, "", 15, color(255));
    uIManager.addToUI(objectives);
@@ -94,6 +104,7 @@ void setup()
    */
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
+  sceneManager.addScene(livingRoomScene);
   sceneManager.getCurrentScene().awake();
   uIManager.awake();
 }
