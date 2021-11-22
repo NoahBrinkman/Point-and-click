@@ -32,15 +32,14 @@ class MultiPartTextObject extends TextObject {
 
   @Override
     public void mouseClicked() {
-    if (mouseIsHovering || this.displayText) { 
-      this.displayText = true;
-      
+    if (mouseIsHovering) { 
+      super.displayText = true;
+    }
     if (currentIndex + 1 >= textParts.length) {
-        super.displayText = false;
-        currentIndex = -1;
-      } else {
-        currentIndex++;
-      }
+      super.displayText = false;
+      currentIndex = -1;
+    } else {
+      currentIndex++;
     }
   }
 

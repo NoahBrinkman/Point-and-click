@@ -51,8 +51,8 @@ class TextObject extends GameObject {
       text(text, this.x + 15, this.y + 15, textWidth, textHeight);
     }
   }
-  
-    void drawText(boolean showRect, boolean changeFontSize, int fontSize, boolean changeFontColor, color fontColor) {
+
+  void drawText(boolean showRect, boolean changeFontSize, int fontSize, boolean changeFontColor, color fontColor) {
     textSize(changeFontSize ? fontSize : 11);
     if (displayText) {
       if (showRect) {
@@ -63,9 +63,10 @@ class TextObject extends GameObject {
       text(text, this.x + 15, this.y + 15, textWidth, textHeight);
     }
   }
-  
+
   @Override
     public void mouseClicked() {
+    super.mouseClicked();
     displayText = false;
     if (mouseIsHovering) { 
       displayText = true;
