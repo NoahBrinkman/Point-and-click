@@ -7,8 +7,11 @@ class Scene {
   private ArrayList<GameObject> markedForDeathGameObjects;
 
   private TextManager textManager;
-
+  
+  public boolean useUI;
+  
   public Scene(String sceneName, String backgroundImageFile) {
+    useUI = true;
     this.sceneName = sceneName;
     this.backgroundImage = loadImage(backgroundImageFile);
     gameObjects = new ArrayList<GameObject>();

@@ -52,6 +52,9 @@ class NewScrollingTextObject extends NewTextObject {
         }
       }
     }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
+    }
     if (useButton && mouseIsHoveringOverButton()) {
       isActive = true;
     }

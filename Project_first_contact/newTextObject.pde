@@ -4,6 +4,7 @@ class NewTextObject {
   int xPos;
   int yPos;
   PImage textBoxImage;
+  String textBoxImageName;
   int fontSize;
   color fontColor;
   boolean showRect;
@@ -34,6 +35,7 @@ class NewTextObject {
     if (imageName != "") { 
       textBoxImage = loadImage(imageName);
     }
+    textBoxImageName = imageName;
     showRect = imageName == "";
     fontSize = _fontSize;
     fontColor = _fontColor;
@@ -61,6 +63,10 @@ class NewTextObject {
 
   public void loadOnAwake() {
     startOnAwake = true;
+  }
+
+  public void dontshowRect() {
+    showRect = false;
   }
 
   public void loadSceneOnComplete(String sceneID) {
@@ -92,6 +98,7 @@ class NewTextObject {
   }
 
   void mouseClicked() {
+
     if (isActive) {
       isActive = false;
       if (loadNewSceneOnFinish) {
@@ -102,6 +109,9 @@ class NewTextObject {
           println(e.getMessage());
         }
       }
+    }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
     }
     if (useButton && mouseIsHoveringOverButton()) {
       isActive = true;

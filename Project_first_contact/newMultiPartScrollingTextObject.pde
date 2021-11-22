@@ -31,12 +31,18 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
   }
-
+  
+  @Override
+  void awake(){
+    if(super.startOnAwake){
+      currentIndex  = 0;
+      isActive = true;
+    }
+  }
 
   @Override
     void draw() {
     super.draw();
-
     super.text = heldText;
     if (super.isActive && !isFinished) {
       timer -= deltaTime;
@@ -44,6 +50,9 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
         addChar();
         timer = secondsUntilNextChar;
       }
+    }
+    if (currentIndex >=0) {
+      super.xPos = width / 2 - (int)textWidth(textParts[currentIndex]) / 2;
     }
   }
 
@@ -71,6 +80,9 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
         currentCharIndex = -1;
         heldText = "";
       }
+    }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
     }
     if (useButton && mouseIsHoveringOverButton()) {
       isActive = true;

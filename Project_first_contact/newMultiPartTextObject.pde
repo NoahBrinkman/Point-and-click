@@ -40,6 +40,9 @@ class NewMultiPartTextObject extends NewTextObject {
         super.text = textParts[currentIndex];
       }
     }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
+    }
     if (useButton && mouseIsHoveringOverButton()) {
       isActive = true;
     }

@@ -3,7 +3,9 @@ class TextManager {
   ArrayList<NewTextObject> textObjects;
   ArrayList<NewTextObject> markedForDeathTextObjects;
   NewTextObject currentTextObject;
-
+  boolean otherTextIsAlreadyActive;
+  
+  
   TextManager() {
     textObjects = new ArrayList<NewTextObject>();
     markedForDeathTextObjects = new ArrayList<NewTextObject>();
@@ -12,17 +14,19 @@ class TextManager {
 
   void draw() {
     if (currentTextObject.text != "") {
+      otherTextIsAlreadyActive = true;
       if (currentTextObject.showRect) {
         strokeWeight(4);
         fill(255);
         rect(0, height - 200, width, 200);
       } else {
-        image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);
+        if(currentTextObject.textBoxImageName != "") image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);
       }
       textSize(currentTextObject.fontSize);
       fill(currentTextObject.fontColor);
       text(currentTextObject.text, currentTextObject.xPos, currentTextObject.yPos);
     } else {
+      otherTextIsAlreadyActive = false;
       for (NewTextObject textObject : textObjects) {
         if (textObject.isActive) {
           tryDisplayMyText(textObject);
