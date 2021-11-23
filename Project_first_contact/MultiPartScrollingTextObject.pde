@@ -60,7 +60,7 @@ class MultiPartScrollingTextObject extends TextObject {
   @Override
     public void mouseClicked() {    
     if (isActive) {
-      if (currentIndex + 1 >= textParts.length) {
+      if (currentIndex + 1 >= textParts.length && isFinished) {
         currentString = textParts[0];
         heldText = "";
         currentIndex = -1;
