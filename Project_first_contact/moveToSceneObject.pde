@@ -30,6 +30,7 @@ class MoveToSceneObject extends GameObject {
       return;
     }
     if(mouseIsHovering) {
+      soundManager.playSound(soundManager.doorOpenSFX);
       if(moveBack) {
         sceneManager.goToPreviousScene();
       } else {

@@ -18,7 +18,7 @@ class NumberAndArrows {
   void update() {
     textSize(100);
     text(currentNumber, xPosition, yPosition);
-    textSize(12);
+    textSize(17);
     upArrow.update();
     downArrow.update();
   }

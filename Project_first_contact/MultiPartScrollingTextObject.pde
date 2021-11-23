@@ -11,6 +11,7 @@ class MultiPartScrollingTextObject extends TextObject {
   boolean isFinished = false;
   String buttonImageName;
   String objectivetoComplete;
+  Objective objective;
 
   MultiPartScrollingTextObject() {
     super();
@@ -41,13 +42,15 @@ class MultiPartScrollingTextObject extends TextObject {
     currentCharIndex = -1;
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
-    objectivetoComplete = pObjective;
+    //when code Objective code is done you can uncomment this
+    objectivetoComplete = "";
+    //objectivetoComplete = pObjective;
     this.buttonImageName = buttonImageName;
   }
-  
+
   @Override
-  void awake(){
-    if(super.startOnAwake){
+    void awake() {
+    if (super.startOnAwake) {
       currentIndex  = 0;
       isActive = true;
       super.startOnAwake = false;
@@ -74,8 +77,9 @@ class MultiPartScrollingTextObject extends TextObject {
     public void mouseClicked() {    
     if (isActive) {
       if (currentIndex + 1 >= textParts.length && isFinished) {
-        if(objectivetoComplete != "") {
-          Objective.completeObjective(objectivetoComplete);
+        if (objectivetoComplete != "") {
+          //when code Objective code is done you can uncomment this
+          //objective.completeObjective(objectivetoComplete);
         }
         currentString = textParts[0];
         heldText = "";
@@ -96,7 +100,7 @@ class MultiPartScrollingTextObject extends TextObject {
         isFinished = false;
         currentCharIndex = -1;
         heldText = ".";
-      }else{
+      } else {
         isFinished = true;
         heldText = currentString;
         currentCharIndex = -1;
@@ -116,7 +120,7 @@ class MultiPartScrollingTextObject extends TextObject {
       isFinished = true;
     } else {
       currentCharIndex++;
-      if(currentCharIndex == 0){
+      if (currentCharIndex == 0) {
         heldText = "";
       }
       heldText = heldText + currentString.charAt(currentCharIndex);

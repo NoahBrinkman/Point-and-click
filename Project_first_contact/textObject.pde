@@ -18,7 +18,7 @@ class TextObject {
   int buttonImageHeight;
   boolean useHoverButton;
   PImage hoverButtonImage;
-
+  boolean mouseIsHoveringOverButton;
 
   private boolean startOnAwake;
   private boolean loadNewSceneOnFinish;
@@ -89,7 +89,6 @@ class TextObject {
   }
 
   void draw() {
-
   }
 
   void mouseClicked() {
@@ -114,6 +113,7 @@ class TextObject {
   }
 
   void mouseMoved() {
+    mouseIsHoveringOverButton = mouseIsHoveringOverButton();
   }
 
   boolean mouseIsHoveringOverButton() {

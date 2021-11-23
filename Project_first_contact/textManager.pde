@@ -11,8 +11,9 @@ class TextManager {
     markedForDeathTextObjects = new ArrayList<TextObject>();
     currentTextObject = new TextObject();
   }
-
+    boolean useArrow;
   void draw() {
+    useArrow = true;
     if (currentTextObject.text != "") {
       otherTextIsAlreadyActive = true;
       if (currentTextObject.showRect) {
@@ -42,18 +43,20 @@ class TextManager {
       object.draw();
     }
 
-
     wipeMarkedForDeath();
     
-    
+
     for (int i = 0; i < textObjects.size(); i ++) {
-      if (textObjects.get(i).mouseIsHoveringOverButton() && textObjects.get(i).useButton) {
-        println(i);
+      if (textObjects.get(i).mouseIsHoveringOverButton && textObjects.get(i).useButton) {
         cursor(textObjects.get(i).cursorImage);
+        useArrow = false;
         break;
-      } else {
-        cursor(ARROW);
+      } else{
+        useArrow = true;
       }
+    }
+    if(useArrow){
+      cursor(ARROW);
     }
   }
 

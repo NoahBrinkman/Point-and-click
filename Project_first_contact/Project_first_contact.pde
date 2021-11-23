@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 int wwidth = 800;
 int wheight = 800;
 
@@ -7,6 +9,8 @@ final InventoryManager inventoryManager = new InventoryManager();
 float deltaTime = 0.0f;
 
 private UIManager uIManager = new UIManager();
+
+SoundManager soundManager;
 
 void settings()
 {
@@ -18,6 +22,7 @@ void setup()
   textFont(createFont("filetto.ttf", 128));
   Scene startScene = new Scene("startScene", "blackground.png");
   startScene.useUI = false;
+  soundManager = new SoundManager();
 
   MultiPartScrollingTextObject scrollingObjectForStart = new MultiPartScrollingTextObject("*There is nothing. Only a warm darkness and this deep feeling of regret*@*An inordinate amount of time passes as you still feel nothing*@*Suddenly, an awareness creeps up on you*", 
     width / 2 - 250, height / 2, "", 17, color(255), 0.03f);
@@ -39,8 +44,8 @@ void setup()
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 330, 690, 50, 50, "arrowLeft.png", "livingRoom");
   MultiPartScrollingTextObject objectivetest = new MultiPartScrollingTextObject("This here exists to test out if Objective works", width / 2 - 250, height -110, "", 15, color(0), 500, 500, "zoom.png", 50, 50, 0.01f, "pet dog");
   //bodyInteraction.loadSceneOnComplete("nightStand");
-  Objective objective = new Objective("", width-100, 100);
-  uIManager.addToUI(objective);
+  //Objective objective = new Objective("", width-100, 100);
+  //uIManager.addToUI(objective);
   bedRoomScene.addGameObject(toLivingRoom);
   bedRoomScene.addTextObject(nightStandInteraction);
   bedRoomScene.addTextObject(wardrobeInteraction);
@@ -52,8 +57,8 @@ void setup()
   livingRoomScene.addGameObject(toBedRoom);
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
-  MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”",
-  width / 2 - 120, height -120,"",17,color(0),90,450,"speechBubble.png",190,120,0.01f);
+  MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
+    width / 2 - 120, height -120, "", 17, color(0), 90, 450, "speechBubble.png", 190, 120, 0.01f);
   livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
 
@@ -61,10 +66,10 @@ void setup()
   MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 200, 650, 50, 50, "arrowLeft.png", true);
   Collectable keyToGarden = new Collectable("keyToGarden", "key.png");
   CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
-  MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*",
-  width / 2 - 120, height -120,"",17,color(0),220,420,"speechBubble.png",50,50,0.01f);
-  
- 
+  MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*", 
+    width / 2 - 120, height -120, "", 17, color(0), 220, 420, "speechBubble.png", 50, 50, 0.01f);
+
+
   studyRoomScene.addTextObject(desk);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
@@ -74,7 +79,7 @@ void setup()
   livingRoomScene.addTextObject(gardenLock);
 
   Scene gardenScene = new Scene("garden", "garden.png");
-  MoveToSceneObject gardenToLivingRoom = new MoveToSceneObject("moveToLivingRoomFromGarden", 600, 400, 50, 50, "arrowRight.png", true);
+  MoveToSceneObject gardenToLivingRoom = new MoveToSceneObject("moveToLivingRoomFromGarden", 700, 450, 50, 50, "arrowRightBlack.png", true);
   gardenScene.addGameObject(gardenToLivingRoom);
 
   /*
