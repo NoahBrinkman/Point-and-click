@@ -24,7 +24,7 @@ void setup()
   scrollingObjectForStart.loadOnAwake();
   scrollingObjectForStart.loadSceneOnComplete("bedRoom");
   scrollingObjectForStart.dontshowRect();
-  startScene.addTextObjecs(scrollingObjectForStart);
+  startScene.addTextObject(scrollingObjectForStart);
 
   Scene bedRoomScene = new Scene("bedRoom", "bedRoom.png");
   MultiPartScrollingTextObject roomIntro = new MultiPartScrollingTextObject("*As you open your eyes you find yourself in a nostalgic place.\nSomewhere where you’ve once felt love, hate, fear, disgust, anger\nand, most importantly, regret*@*While you look around trying to recognize this place, you see a body. Lying in bed. Lifeless*", 
@@ -33,9 +33,9 @@ void setup()
 
   MultiPartScrollingTextObject bodyInteraction = new MultiPartScrollingTextObject("*Moving closer to the body you start recognizing its sad appearance.\nIts curly grey hair, the lifeless blue eyes looking at the void and its moustache.\nIts burly moustache.*@“Is that me?”\n“Am I…\nDEAD?!”@*You keep looking at the body, searching for any signs of life*@*Now it only looks like a lifeless blob to you*@“I’m not ready.\nI don’t want to go.\nNot without saying goodbye.”@*You move away from the body. As if you’re scared of it. Scared of yourself*", 
     width / 2 - 250, height -110, "", 17, color(0), 150, 520, "speechBubble.png", 100, 75, 0.01f);
-  bedRoomScene.addTextObjecs(bodyInteraction);
+  bedRoomScene.addTextObject(bodyInteraction);
   MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 17, color(0), 550, 450, "zoom.png", 100, 70, 0.01f);
-  MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(0), 375, 340, "speechBubble.png", 50, 50, 0.01f);
+  MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(0), 350, 280, "speechBubble.png", 100, 200, 0.01f);
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 330, 690, 50, 50, "arrowLeft.png", "livingRoom");
   //Objective objectivetest = new Objective("This here exists to test out if Objective works", width / 2 - 250, height -110, "testobjective.png", 15, color(0), 500, 500, "zoom.png", 50, 50, 0.01f, "pet dog");
   Objective objectivetest = new Objective("This here exists to test out if Objective works", width / 2 - 250, height -110, "", 15, color(0), 500, 500, "testobjective.png", 50, 50, 0.01f, "pet dog");
@@ -52,12 +52,18 @@ void setup()
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
 
+  MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
+
   Scene studyRoomScene = new Scene("studyRoom", "studyRoom.png");
   MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 200, 650, 50, 50, "arrowLeft.png", true);
   Collectable keyToGarden = new Collectable("keyToGarden", "key.png");
-  CollectableObject keyToGardenObject = new CollectableObject("KeyObject",320,380,100,50,keyToGarden);
+  CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
+
+  RequireObject gardenLock = new RequireObject("“It’s locked. Where did I store the key?”", 
+    width / 2 - 120, height -120, "", 17, color(0), 215, 600, "zoom.png", 50, 50, keyToGarden, toGarden);
+  livingRoomScene.addTextObject(gardenLock);
 
   Scene gardenScene = new Scene("garden", "garden.png");
   MoveToSceneObject gardenToLivingRoom = new MoveToSceneObject("moveToLivingRoomFromGarden", 600, 400, 50, 50, "arrowRight.png", true);
@@ -119,7 +125,7 @@ void setup()
    sceneManager.addScene(scene05);
    sceneManager.addScene(scene06);
    */
-   
+
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
   sceneManager.addScene(livingRoomScene);

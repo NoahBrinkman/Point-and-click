@@ -4,8 +4,8 @@ class TextManager {
   ArrayList<TextObject> markedForDeathTextObjects;
   TextObject currentTextObject;
   boolean otherTextIsAlreadyActive;
-  
-  
+
+
   TextManager() {
     textObjects = new ArrayList<TextObject>();
     markedForDeathTextObjects = new ArrayList<TextObject>();
@@ -20,7 +20,7 @@ class TextManager {
         fill(255);
         rect(0, height - 200, width, 200, 8);
       } else {
-        if(currentTextObject.textBoxImageName != "") image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);
+        if (currentTextObject.textBoxImageName != "") image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);
       }
       textSize(currentTextObject.fontSize);
       fill(currentTextObject.fontColor);
@@ -36,20 +36,25 @@ class TextManager {
     if (!currentTextObject.isActive) {
       currentTextObject = new TextObject();
     }
-    
-    for(TextObject object : textObjects){
-      if(object.mouseIsHoveringOverButton() && object.useButton){
-        cursor(object.cursorImage);
-        break;
-      }else{
-        cursor(ARROW);
-      }
-    }
-    
+
+
     for (TextObject object : textObjects) {
       object.draw();
     }
+
+
     wipeMarkedForDeath();
+    
+    
+    for (int i = 0; i < textObjects.size(); i ++) {
+      if (textObjects.get(i).mouseIsHoveringOverButton() && textObjects.get(i).useButton) {
+        println(i);
+        cursor(textObjects.get(i).cursorImage);
+        break;
+      } else {
+        cursor(ARROW);
+      }
+    }
   }
 
   void awake() {
@@ -62,8 +67,9 @@ class TextManager {
   }
 
   void wipeMarkedForDeath() {
-    for(int i = 0; i < markedForDeathTextObjects.size(); i++){
-      if(textObjects.contains(markedForDeathTextObjects.get(i))){
+    for (int i = 0; i < markedForDeathTextObjects.size(); i++) {
+      if (textObjects.contains(markedForDeathTextObjects.get(i))) {
+        markedForDeathTextObjects.get(i).isActive = false;
         textObjects.remove(textObjects.indexOf(markedForDeathTextObjects.get(i)));
       }
     }

@@ -117,6 +117,6 @@ class TextObject {
   }
 
   boolean mouseIsHoveringOverButton() {
-    return (mouseX >= buttonPosX && mouseX <= buttonPosX + buttonImageWidth) && (mouseY >= buttonPosY && mouseY <= buttonPosY + buttonImageHeight);
+    return (mouseX >= buttonPosX - 10 && mouseX <= buttonPosX + buttonImageWidth + 10) && (mouseY >= buttonPosY - 10 && mouseY <= buttonPosY + buttonImageHeight + 10);
   }
 }
