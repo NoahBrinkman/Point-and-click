@@ -75,7 +75,7 @@ class MultiPartScrollingTextObject extends TextObject {
     if (isActive) {
       if (currentIndex + 1 >= textParts.length && isFinished) {
         if(objectivetoComplete != "") {
-          Objective.completeObjective(objectivetoComplete) ;
+          Objective.completeObjective(objectivetoComplete);
         }
         currentString = textParts[0];
         heldText = "";
