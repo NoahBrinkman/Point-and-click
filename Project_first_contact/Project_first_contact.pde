@@ -52,13 +52,20 @@ void setup()
   livingRoomScene.addGameObject(toBedRoom);
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
-
+  MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”",
+  width / 2 - 120, height -120,"",17,color(0),90,450,"speechBubble.png",190,120,0.01f);
+  livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
 
   Scene studyRoomScene = new Scene("studyRoom", "studyRoom.png");
   MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 200, 650, 50, 50, "arrowLeft.png", true);
   Collectable keyToGarden = new Collectable("keyToGarden", "key.png");
   CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
+  MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*",
+  width / 2 - 120, height -120,"",17,color(0),220,420,"speechBubble.png",50,50,0.01f);
+  
+ 
+  studyRoomScene.addTextObject(desk);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
 
@@ -149,7 +156,6 @@ void draw()
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
-  println("X = " + mouseX, "Y = " + mouseY); 
 }
 
 void mouseClicked() {
