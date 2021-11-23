@@ -9,6 +9,8 @@ class MultiPartScrollingTextObject extends TextObject {
   float timer = .01f;
   int currentCharIndex = -1;
   boolean isFinished = false;
+  String buttonImageName;
+  String objectivetoComplete;
 
   MultiPartScrollingTextObject() {
     super();
@@ -30,6 +32,17 @@ class MultiPartScrollingTextObject extends TextObject {
     currentCharIndex = -1;
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
+  }
+  MultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters, String pObjective) {
+    super(".", x, y, imageName, _fontSize, _fontColor, buttonX, buttonY, buttonImageName, buttonWidth, buttonHeight);
+    textParts = _text.split("@");
+    currentIndex = 0;
+    heldText = "";
+    currentCharIndex = -1;
+    secondsUntilNextChar = timeBetweenCharacters;
+    currentString = textParts[0];
+    objectivetoComplete = pObjective;
+    this.buttonImageName = buttonImageName;
   }
   
   @Override
@@ -61,6 +74,9 @@ class MultiPartScrollingTextObject extends TextObject {
     public void mouseClicked() {    
     if (isActive) {
       if (currentIndex + 1 >= textParts.length && isFinished) {
+        if(objectivetoComplete != "") {
+          Objective.completeObjective(objectivetoComplete) ;
+        }
         currentString = textParts[0];
         heldText = "";
         currentIndex = 0;
