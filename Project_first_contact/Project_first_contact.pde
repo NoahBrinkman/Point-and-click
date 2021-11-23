@@ -41,10 +41,10 @@ void setup()
   Objective objectivetest = new Objective("This here exists to test out if Objective works", width / 2 - 250, height -110, "", 15, color(0), 500, 500, "testobjective.png", 50, 50, 0.01f, "pet dog");
   //bodyInteraction.loadSceneOnComplete("nightStand");
   bedRoomScene.addGameObject(toLivingRoom);
-  bedRoomScene.addTextObjecs(nightStandInteraction);
-  bedRoomScene.addTextObjecs(wardrobeInteraction);
-  bedRoomScene.addTextObjecs(objectivetest);
-  bedRoomScene.addTextObjecs(roomIntro);
+  bedRoomScene.addTextObject(nightStandInteraction);
+  bedRoomScene.addTextObject(wardrobeInteraction);
+  bedRoomScene.addTextObject(objectivetest);
+  bedRoomScene.addTextObject(roomIntro);
 
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
   MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 650, 420, 50, 50, "arrowUp.png", "bedRoom");
