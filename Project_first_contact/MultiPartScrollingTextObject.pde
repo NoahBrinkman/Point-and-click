@@ -1,4 +1,4 @@
-class NewMultiPartScrollingTextObject extends NewTextObject {
+class MultiPartScrollingTextObject extends TextObject {
 
   String[] textParts;
   int currentIndex = -1;
@@ -10,10 +10,10 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
   int currentCharIndex = -1;
   boolean isFinished = false;
 
-  NewMultiPartScrollingTextObject() {
+  MultiPartScrollingTextObject() {
     super();
   }
-  NewMultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, float timeBetweenCharacters) {
+  MultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, float timeBetweenCharacters) {
     super(".", x, y, imageName, _fontSize, _fontColor);
     textParts = _text.split("@");
     currentIndex = -1;
@@ -22,7 +22,7 @@ class NewMultiPartScrollingTextObject extends NewTextObject {
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
   }
-  NewMultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters) {
+  MultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters) {
     super(".", x, y, imageName, _fontSize, _fontColor, buttonX, buttonY, buttonImageName, buttonWidth, buttonHeight);
     textParts = _text.split("@");
     currentIndex = 0;

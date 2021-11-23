@@ -3,59 +3,48 @@ class MultiPartTextObject extends TextObject {
   String[] textParts;
   int currentIndex = -1;
 
-
-  MultiPartTextObject(String identifier, int x, int y, int owidth, 
-    int oheight, String gameObjectImageFile, String text) 
-  {
-    super(identifier, x, y, owidth, oheight, gameObjectImageFile, text);
-    textParts = text.split("@");
-    String longestString = textParts[0]; 
-    for (int i = 0; i < textParts.length; i++) {
-      if (textParts[i].length() > longestString.length()) {
-        longestString = textParts[i];
-      }
-    }
-    super.text = longestString;
-    super.calculateTextArea();
+  MultiPartTextObject() {
+    super();
+  }
+  MultiPartTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor) {
+    super(".", x, y, imageName, _fontSize, _fontColor);
+    textParts = _text.split("@");
+    currentIndex = -1;
+    super.text = textParts[0];
+  }
+  MultiPartTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight) {
+    super(".", x, y, imageName, _fontSize, _fontColor, buttonX, buttonY, buttonImageName, buttonWidth, buttonHeight);
+    textParts = _text.split("@");
+    currentIndex = -1;
+    super.text = textParts[0];
   }
 
-  @Override
-    void draw() {
-    super.draw();
-    if (super.displayText) {
-      fill(255);
-      rect(this.x, this.y, super.textWidth + 30, super.textHeight, 8);
-      fill(0);
-      text(textParts[currentIndex], this.x + 15, this.y + 15, super.textWidth, super.textHeight);
-    }
-  }
 
   @Override
-    public void mouseClicked() {
-    if (mouseIsHovering) { 
-      super.displayText = true;
-    }
-    if (currentIndex + 1 >= textParts.length) {
-      super.displayText = false;
-      currentIndex = -1;
-    } else {
-      currentIndex++;
-    }
-  }
-
-  @Override
-    void mouseMoved() {
-    mouseIsHovering = false;
-    if (this.displayText) {
-      if (mouseX >= x && mouseX <= x + super.textWidth &&
-        mouseY >= y && mouseY <= y + super.textHeight) {
-        mouseIsHovering = true;
+    public void mouseClicked() {    
+    if (isActive) {
+      if (currentIndex + 1 >= textParts.length) {
+        super.text = textParts[0];
+        currentIndex = -1;
+        isActive = false;
+        if (super.loadNewSceneOnFinish) {
+          try {
+            sceneManager.goToScene(super.sceneName);
+          } 
+          catch(Exception e) { 
+            println(e.getMessage());
+          }
+        }
+      } else {
+        currentIndex++;
+        super.text = textParts[currentIndex];
       }
-    } else {
-      if (mouseX >= x && mouseX <= x + owidth &&
-        mouseY >= y && mouseY <= y + oheight) {
-        mouseIsHovering = true;
-      }
+    }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
+    }
+    if (useButton && mouseIsHoveringOverButton()) {
+      isActive = true;
     }
   }
 }

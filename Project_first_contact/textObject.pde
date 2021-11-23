@@ -1,92 +1,128 @@
-class TextObject extends GameObject {
-  public String text;
-  public boolean displayText;
-  private float textWidth;
-  private float textHeight;
+class TextObject {
 
-  public TextObject(String identifier, int x, int y, int owidth, 
-    int oheight, String gameObjectImageFile, String text) {
-    super(identifier, x, y, owidth, oheight, gameObjectImageFile);
-    this.text = text;
-    displayText = false;
-    calculateTextArea(); //Automatically calculates the area 
-    //necessary to display the entire text.
-  }
-  @Override
-    public void draw() {
-    super.draw();
-    drawText();
+  String text;
+  int xPos;
+  int yPos;
+  PImage textBoxImage;
+  String textBoxImageName;
+  int fontSize;
+  color fontColor;
+  boolean showRect;
+  boolean isActive = false;
+
+  boolean useButton;
+  int buttonPosX;
+  int buttonPosY;
+  PImage buttonImage;
+  int buttonImageWidth;
+  int buttonImageHeight;
+  boolean useHoverButton;
+  PImage hoverButtonImage;
+
+
+  private boolean startOnAwake;
+  private boolean loadNewSceneOnFinish;
+  private String sceneName;
+
+  TextObject() {
+    text = "";
   }
 
-  void drawText() {
-    textSize(11);
-    if (displayText) {
-      fill(255);
-      rect(this.x, this.y, textWidth + 30, textHeight, 8);
-      fill(0);
-      text(text, this.x + 15, this.y + 15, textWidth, textHeight);
+  TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor) {
+    text = _text;
+    xPos = x;
+    yPos = y;
+    if (imageName != "") { 
+      textBoxImage = loadImage(imageName);
+    }
+    textBoxImageName = imageName;
+    showRect = imageName == "";
+    fontSize = _fontSize;
+    fontColor = _fontColor;
+  }
+  TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight) {
+    text = _text;
+    xPos = x;
+    yPos = y;
+    if (imageName != "") { 
+      textBoxImage = loadImage(imageName);
+    }
+    showRect = imageName == "";
+    fontSize = _fontSize;
+    fontColor = _fontColor;
+
+    useButton = buttonImageName != "";
+    if (useButton) { 
+      buttonPosX = buttonX;
+      buttonPosY = buttonY;
+      buttonImage = loadImage(buttonImageName);
+      buttonImageWidth = buttonWidth;
+      buttonImageHeight = buttonHeight;
     }
   }
 
-  void drawText(boolean showRect) {
-    textSize(11);
-    if (displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, textWidth + 30, textHeight, 8);
+  public void loadOnAwake() {
+    startOnAwake = true;
+  }
+
+  public void dontshowRect() {
+    showRect = false;
+  }
+
+  public void loadSceneOnComplete(String sceneID) {
+    loadNewSceneOnFinish = true;
+    sceneName = sceneID;
+  }
+
+  void setHoverImage(String hoverButtonImageName) {
+    if (hoverButtonImageName != "") { 
+      hoverButtonImage = loadImage(hoverButtonImageName);
+      useHoverButton = true;
+    }
+  }
+
+  void awake() {
+    if (startOnAwake) {
+      isActive = true;
+      startOnAwake = false;
+    }
+  }
+
+  void draw() {
+    if (useButton) {
+      if (useHoverButton && mouseIsHoveringOverButton()) {
+        image(hoverButtonImage, buttonPosX, buttonPosY, buttonImageWidth, buttonImageHeight);
+      } else {
+        image(buttonImage, buttonPosX, buttonPosY, buttonImageWidth, buttonImageHeight);
       }
-      fill(0);
-      text(text, this.x + 15, this.y + 15, textWidth, textHeight);
     }
   }
 
-  void drawText(boolean showRect, boolean changeFontSize, int fontSize) {
-    textSize(changeFontSize ? fontSize : 11);
-    if (displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, textWidth + 30, textHeight, 8);
+  void mouseClicked() {
+
+    if (isActive) {
+      isActive = false;
+      if (loadNewSceneOnFinish) {
+        try {
+          sceneManager.goToScene(sceneName);
+        } 
+        catch(Exception e) { 
+          println(e.getMessage());
+        }
       }
-      fill(0);
-      text(text, this.x + 15, this.y + 15, textWidth, textHeight);
+    }
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
+      return;
+    }
+    if (useButton && mouseIsHoveringOverButton()) {
+      isActive = true;
     }
   }
 
-  void drawText(boolean showRect, boolean changeFontSize, int fontSize, boolean changeFontColor, color fontColor) {
-    textSize(changeFontSize ? fontSize : 11);
-    if (displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, textWidth + 30, textHeight, 8);
-      }
-      fill(changeFontColor ? fontColor : 0);
-      text(text, this.x + 15, this.y + 15, textWidth, textHeight);
-    }
+  void mouseMoved() {
   }
 
-  @Override
-    public void mouseClicked() {
-    super.mouseClicked();
-    displayText = false;
-    if (mouseIsHovering) { 
-      displayText = true;
-    }
-  }
-
-  public void calculateTextArea() {
-    textWidth = textWidth(text);
-    float remaining = textWidth - 300;
-    textWidth = (textWidth > 300) ? 300 : textWidth;
-    textHeight = 50;
-
-    if (text.contains("\n")) {
-      int counter = text.split("\n", -1).length - 1;
-      textHeight += (counter * 25);
-    }
-    while (remaining > 300)
-    {
-      textHeight += 30;
-      remaining -= 300;
-    }
+  boolean mouseIsHoveringOverButton() {
+    return (mouseX >= buttonPosX && mouseX <= buttonPosX + buttonImageWidth) && (mouseY >= buttonPosY && mouseY <= buttonPosY + buttonImageHeight);
   }
 }

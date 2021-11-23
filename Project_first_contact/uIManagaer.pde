@@ -1,19 +1,19 @@
 class UIManager {
 
-  private ArrayList<NewTextObject> uIElements = new ArrayList<NewTextObject>();
+  private ArrayList<TextObject> uIElements = new ArrayList<TextObject>();
 
 
-  void addToUI(NewTextObject object) {
+  void addToUI(TextObject object) {
     uIElements.add(object);
   }
 
   void awake() {
-    for (NewTextObject textObject : uIElements) {
+    for (TextObject textObject : uIElements) {
       textObject.isActive = true;
     }
   }
   void draw() {
-    for (NewTextObject textObject : uIElements) {
+    for (TextObject textObject : uIElements) {
       textSize(textObject.fontSize);
       fill(textObject.fontColor);
       text(textObject.text, textObject.xPos, textObject.yPos);

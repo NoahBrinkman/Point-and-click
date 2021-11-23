@@ -1,4 +1,4 @@
-class RequireObject extends NewTextObject {
+class RequireObject extends TextObject {
   private Collectable collectable;
   private GameObject replaceWith;
   boolean unlocked; 

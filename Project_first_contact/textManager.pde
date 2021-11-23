@@ -1,15 +1,15 @@
 class TextManager {
 
-  ArrayList<NewTextObject> textObjects;
-  ArrayList<NewTextObject> markedForDeathTextObjects;
-  NewTextObject currentTextObject;
+  ArrayList<TextObject> textObjects;
+  ArrayList<TextObject> markedForDeathTextObjects;
+  TextObject currentTextObject;
   boolean otherTextIsAlreadyActive;
   
   
   TextManager() {
-    textObjects = new ArrayList<NewTextObject>();
-    markedForDeathTextObjects = new ArrayList<NewTextObject>();
-    currentTextObject = new NewTextObject();
+    textObjects = new ArrayList<TextObject>();
+    markedForDeathTextObjects = new ArrayList<TextObject>();
+    currentTextObject = new TextObject();
   }
 
   void draw() {
@@ -27,24 +27,24 @@ class TextManager {
       text(currentTextObject.text, currentTextObject.xPos, currentTextObject.yPos);
     } else {
       otherTextIsAlreadyActive = false;
-      for (NewTextObject textObject : textObjects) {
+      for (TextObject textObject : textObjects) {
         if (textObject.isActive) {
           tryDisplayMyText(textObject);
         }
       }
     }
     if (!currentTextObject.isActive) {
-      currentTextObject = new NewTextObject();
+      currentTextObject = new TextObject();
     }
 
-    for (NewTextObject object : textObjects) {
+    for (TextObject object : textObjects) {
       object.draw();
     }
     wipeMarkedForDeath();
   }
 
   void awake() {
-    for (NewTextObject object : textObjects) {
+    for (TextObject object : textObjects) {
       object.awake();
       if (object.isActive) {
         break;
@@ -58,21 +58,21 @@ class TextManager {
         textObjects.remove(textObjects.indexOf(markedForDeathTextObjects.get(i)));
       }
     }
-    markedForDeathTextObjects = new ArrayList<NewTextObject>();
+    markedForDeathTextObjects = new ArrayList<TextObject>();
   }
 
   void mouseClicked() {
-    for (NewTextObject object : textObjects) {
+    for (TextObject object : textObjects) {
       object.mouseClicked();
     }
   }
 
   void mouseMoved() {
-    for (NewTextObject object : textObjects) {
+    for (TextObject object : textObjects) {
       object.mouseMoved();
     }
   }
-  void tryDisplayMyText(NewTextObject textObject) {
+  void tryDisplayMyText(TextObject textObject) {
     if (currentTextObject.text != "") {
       return;
     } else {

@@ -1,116 +1,72 @@
 class ScrollingTextObject extends TextObject {
 
-  String displayedText = "";
+  String heldText = ".";
   float secondsUntilNextChar = .01f;
   float timer = .01f;
   int currentCharIndex = -1;
   boolean isFinished = false;
-  
-  
-  
-  ScrollingTextObject(String identifier, int x, int y, int owidth, int oheight, String gameObjectImageFile, String text, float secondsBetweenCharacters) {
-    super(identifier, x, y, owidth, oheight, gameObjectImageFile, text);
-    secondsUntilNextChar = secondsBetweenCharacters;
-    timer = secondsUntilNextChar;
+
+
+  ScrollingTextObject() {
+    super();
+  }
+  ScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, float timeBetweenCharacters) {
+    super(".", x, y, imageName, _fontSize, _fontColor);
+    heldText = _text;
+    currentCharIndex = -1;
+    secondsUntilNextChar = timeBetweenCharacters;
+  }
+
+  ScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters) {
+    super(".", x, y, imageName, _fontSize, _fontColor, buttonX, buttonY, buttonImageName, buttonWidth, buttonHeight);
+    heldText = _text;
+    currentCharIndex = -1;
+    secondsUntilNextChar = timeBetweenCharacters;
   }
 
   @Override
     void draw() {
     super.draw();
-    drawText();
-    textSize(11);
-    fill(0);
-  }
-
-  @Override
-    void drawText() {
-    textSize(11);
-    if (super.displayText) {
-      fill(255);
-      rect(this.x, this.y, super.textWidth + 30, super.textHeight, 8);
-      fill(0);
-      text(displayedText, this.x + 15, this.y + 15, super.textWidth, super.textHeight); 
+    if (super.isActive && !isFinished) {
       timer -= deltaTime;
-      if (timer <= 0) {
-        addNextChar();
-        timer = secondsUntilNextChar;
+      if (timer <= 0.0f) {
+        addChar();
       }
-    } else {
-      displayedText = "";
-      currentCharIndex = 0;
     }
   }
 
   @Override
-    void drawText(boolean showRect) {
-    textSize(11);
-    if (super.displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, super.textWidth + 30, super.textHeight, 8);
+    void mouseClicked() {
+    if (isActive) {
+      currentCharIndex = -1;
+      timer = secondsUntilNextChar;
+      isFinished = false;
+      super.text = ".";
+      isActive = false;
+      if (super.loadNewSceneOnFinish) {
+        try {
+          sceneManager.goToScene(super.sceneName);
+        } 
+        catch(Exception e) { 
+          println(e.getMessage());
+        }
       }
-      fill(0);
-      text(displayedText, this.x + 15, this.y + 15, super.textWidth, super.textHeight); 
-      timer -= deltaTime;
-      if (timer <= 0) {
-        addNextChar();
-        timer = secondsUntilNextChar;
-      }
-    } else {
-      displayedText = "";
-      currentCharIndex = 0;
     }
-  }
-  @Override
-    void drawText(boolean showRect, boolean changeFontSize, int fontSize) {
-    textSize(changeFontSize ? fontSize : 11);
-
-    if (super.displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, super.textWidth + 30, super.textHeight, 8);
-      }
-      fill(0);
-      text(displayedText, this.x + 15, this.y + 15, super.textWidth, super.textHeight); 
-      timer -= deltaTime;
-      if (timer <= 0) {
-        addNextChar();
-        timer = secondsUntilNextChar;
-      }
-    } else {
-      displayedText = "";
-      currentCharIndex = 0;
-    }
-  }
-  
-    @Override
-    void drawText(boolean showRect, boolean changeFontSize, int fontSize, boolean changeFontColor, color fontColor) {
-    textSize(changeFontSize ? fontSize : 11);
-
-    if (super.displayText) {
-      if (showRect) {
-        fill(255);
-        rect(this.x, this.y, super.textWidth + 30, super.textHeight, 8);
-      }
-      fill(changeFontColor ? fontColor : 0);
-      text(displayedText, this.x + 15, this.y + 15, super.textWidth, super.textHeight); 
-      timer -= deltaTime;
-      if (timer <= 0) {
-        addNextChar();
-        timer = secondsUntilNextChar;
-      }
-    } else {
-      displayedText = "";
-      currentCharIndex = 0;
-    }
-  }
-  
-  void addNextChar() {
-    if ((currentCharIndex + 1) >= super.text.length()) {
-      isFinished = true;
+    if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {
       return;
     }
-    currentCharIndex++;
-    displayedText += super.text.charAt(currentCharIndex);
+    if (useButton && mouseIsHoveringOverButton()) {
+      isActive = true;
+    }
+  }
+
+  void addChar() {
+    if (currentCharIndex + 1 >= heldText.length()) {
+      isFinished = true;
+    } else {
+
+      currentCharIndex++;
+      super.text = super.text + heldText.charAt(currentCharIndex);
+    }
   }
 }
