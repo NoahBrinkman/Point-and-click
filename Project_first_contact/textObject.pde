@@ -56,7 +56,6 @@ class TextObject {
       buttonPosX = buttonX;
       buttonPosY = buttonY;
       cursorImage = loadImage(cursorImageName);
-      println(cursorImageName);
       buttonImageWidth = buttonWidth;
       buttonImageHeight = buttonHeight;
     }

@@ -18,7 +18,7 @@ class TextManager {
       if (currentTextObject.showRect) {
         strokeWeight(4);
         fill(255);
-        rect(0, height - 200, width, 200);
+        rect(0, height - 200, width, 200, 8);
       } else {
         if(currentTextObject.textBoxImageName != "") image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);
       }

@@ -79,9 +79,8 @@ class MultiPartScrollingTextObject extends TextObject {
         currentString = textParts[currentIndex];
         isFinished = false;
         currentCharIndex = -1;
-        heldText = "";
+        heldText = ".";
       }else{
-        println(currentIndex);
         isFinished = true;
         heldText = currentString;
         currentCharIndex = -1;
@@ -101,6 +100,9 @@ class MultiPartScrollingTextObject extends TextObject {
       isFinished = true;
     } else {
       currentCharIndex++;
+      if(currentCharIndex == 0){
+        heldText = "";
+      }
       heldText = heldText + currentString.charAt(currentCharIndex);
       isFinished = false;
     }
