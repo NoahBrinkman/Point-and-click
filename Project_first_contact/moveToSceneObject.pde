@@ -24,6 +24,11 @@ class MoveToSceneObject extends GameObject {
   
   @Override
   public void mouseClicked() {
+    super.mouseClicked();
+    if(super.shouldReturnMouseClick){
+      super.shouldReturnMouseClick = false;
+      return;
+    }
     if(mouseIsHovering) {
       if(moveBack) {
         sceneManager.goToPreviousScene();

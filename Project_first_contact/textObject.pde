@@ -13,7 +13,7 @@ class TextObject {
   boolean useButton;
   int buttonPosX;
   int buttonPosY;
-  PImage buttonImage;
+  PImage cursorImage;
   int buttonImageWidth;
   int buttonImageHeight;
   boolean useHoverButton;
@@ -40,7 +40,7 @@ class TextObject {
     fontSize = _fontSize;
     fontColor = _fontColor;
   }
-  TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight) {
+  TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String cursorImageName, int buttonWidth, int buttonHeight) {
     text = _text;
     xPos = x;
     yPos = y;
@@ -51,11 +51,12 @@ class TextObject {
     fontSize = _fontSize;
     fontColor = _fontColor;
 
-    useButton = buttonImageName != "";
+    useButton = cursorImageName != "";
     if (useButton) { 
       buttonPosX = buttonX;
       buttonPosY = buttonY;
-      buttonImage = loadImage(buttonImageName);
+      cursorImage = loadImage(cursorImageName);
+      println(cursorImageName);
       buttonImageWidth = buttonWidth;
       buttonImageHeight = buttonHeight;
     }
@@ -89,13 +90,7 @@ class TextObject {
   }
 
   void draw() {
-    if (useButton) {
-      if (useHoverButton && mouseIsHoveringOverButton()) {
-        image(hoverButtonImage, buttonPosX, buttonPosY, buttonImageWidth, buttonImageHeight);
-      } else {
-        image(buttonImage, buttonPosX, buttonPosY, buttonImageWidth, buttonImageHeight);
-      }
-    }
+
   }
 
   void mouseClicked() {

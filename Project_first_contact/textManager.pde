@@ -36,7 +36,16 @@ class TextManager {
     if (!currentTextObject.isActive) {
       currentTextObject = new TextObject();
     }
-
+    
+    for(TextObject object : textObjects){
+      if(object.mouseIsHoveringOverButton() && object.useButton){
+        cursor(object.cursorImage);
+        break;
+      }else{
+        cursor(ARROW);
+      }
+    }
+    
     for (TextObject object : textObjects) {
       object.draw();
     }

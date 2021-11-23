@@ -63,7 +63,7 @@ class MultiPartScrollingTextObject extends TextObject {
       if (currentIndex + 1 >= textParts.length && isFinished) {
         currentString = textParts[0];
         heldText = "";
-        currentIndex = -1;
+        currentIndex = 0;
         isActive = false;
         isFinished = false;
         if (super.loadNewSceneOnFinish) {
@@ -80,6 +80,11 @@ class MultiPartScrollingTextObject extends TextObject {
         isFinished = false;
         currentCharIndex = -1;
         heldText = "";
+      }else{
+        println(currentIndex);
+        isFinished = true;
+        heldText = currentString;
+        currentCharIndex = -1;
       }
     }
     if (sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive) {

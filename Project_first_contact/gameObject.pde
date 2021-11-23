@@ -9,7 +9,8 @@ class GameObject {
   private PImage gameObjectImage;
   private PImage gameObjectImageHover;
   protected boolean mouseIsHovering;
-
+  public boolean shouldReturnMouseClick;
+  
   public GameObject(String identifier, int x, int y, int owidth, int oheight) {
     this(identifier, x, y, owidth, oheight, "");
   }
@@ -56,6 +57,10 @@ class GameObject {
   }
 
   public void mouseClicked() {
+    if(sceneManager.getCurrentScene().textManager.otherTextIsAlreadyActive){
+      shouldReturnMouseClick = true;
+      return;
+    }
   }
 
   public String getIdentifier() {
