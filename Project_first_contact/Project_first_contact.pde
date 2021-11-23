@@ -19,7 +19,7 @@ void setup()
   startScene.useUI = false;
 
   MultiPartScrollingTextObject scrollingObjectForStart = new MultiPartScrollingTextObject("*There is nothing. Only a warm darkness and this deep feeling of regret*@*An inordinate amount of time passes as you still feel nothing*@*Suddenly, an awareness creeps up on you*", 
-    width / 2 - 250, height / 2, "", 15, color(255), 0.04f);
+  width / 2 - 250, height / 2, "", 15, color(255), 0.04f);
   scrollingObjectForStart.loadOnAwake();
   scrollingObjectForStart.loadSceneOnComplete("bedRoom");
   scrollingObjectForStart.dontshowRect();
@@ -34,12 +34,13 @@ void setup()
     width / 2 - 250, height -110, "", 15, color(0), 150, 520, "zoom.png", 50, 50, 0.01f);
   bedRoomScene.addTextObjecs(bodyInteraction);
   MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 15, color(0), 550, 450, "zoom.png", 50, 50, 0.01f);
-  MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 15, color(0), 550, 450, "zoom.png", 50, 50, 0.01f);
+  MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 15, color(0), 375, 340, "zoom.png", 50, 50, 0.01f);
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 330, 690, 50, 50, "arrowLeft.png", "livingRoom");
 
   //bodyInteraction.loadSceneOnComplete("nightStand");
   bedRoomScene.addGameObject(toLivingRoom);
   bedRoomScene.addTextObjecs(nightStandInteraction);
+  bedRoomScene.addTextObjecs(wardrobeInteraction);
   bedRoomScene.addTextObjecs(roomIntro);
 
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
