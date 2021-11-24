@@ -9,6 +9,8 @@ class TextObject {
   color fontColor;
   boolean showRect;
   boolean isActive = false;
+  boolean hasBeenCompletedOnce;
+
 
   boolean useButton;
   int buttonPosX;
@@ -19,7 +21,7 @@ class TextObject {
   boolean useHoverButton;
   PImage hoverButtonImage;
   boolean mouseIsHoveringOverButton;
-  
+
   private boolean startOnAwake;
   private boolean loadNewSceneOnFinish;
   private String sceneName;
@@ -29,6 +31,7 @@ class TextObject {
   }
 
   TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor) {
+    this();
     text = _text;
     xPos = x;
     yPos = y;
@@ -41,6 +44,7 @@ class TextObject {
     fontColor = _fontColor;
   }
   TextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String cursorImageName, int buttonWidth, int buttonHeight) {
+    this();
     text = _text;
     xPos = x;
     yPos = y;
@@ -95,6 +99,7 @@ class TextObject {
 
     if (isActive) {
       isActive = false;
+      hasBeenCompletedOnce = true;
       if (loadNewSceneOnFinish) {
         try {
           sceneManager.goToScene(sceneName);

@@ -1,27 +1,29 @@
-class Objective extends TextObject {
-  PImage image;
-  String imageText;
-  int xPosition;
-  int yPosition;
-  String objectivetoComplete;
-
-  Objective(String _text, int x, int y) {
-    //you absolutely NEED to have every parameter of TextObject in this constructor otherwise a fuck ton of errors pop up
-    //fix this
-    xPosition = x;
-    yPosition = y;
-    if (_text != "") image = loadImage(_text);
-    imageText = _text;
+class Objective extends ImageInScene {
+  
+  PImage completedImage;
+  boolean isComplete;
+  TextObject textObjectToComplete;
+  
+  
+  Objective(String imageName, int x,int y,int imageWidth,int imageHeight,String completedImageName,TextObject textObjectToCompleteRef){
+    super(imageName,x,y,imageWidth,imageHeight);
+    if(imageName != ""){
+      super.imageToLoad = loadImage(imageName); 
+    }
+    if(completedImageName != ""){
+      completedImage = loadImage(completedImageName);
+    }
+    textObjectToComplete = textObjectToCompleteRef;
   }
+  
   @Override
-    void draw() {
+  void draw(){
     super.draw();
-    image(image, xPosition, yPosition);
-  }
-
-  void completeObjective(String objectiveToComplete) {
-    if (objectiveToComplete == "pet dog") {
-      image = loadImage(imageText.split(".png")[0] + "_crossedout.png");
+    if(textObjectToComplete.hasBeenCompletedOnce){
+      isComplete = true;
+      super.imageToLoad = completedImage;
     }
   }
+  
+  
 }

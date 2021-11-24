@@ -85,6 +85,7 @@ class MultiPartScrollingTextObject extends TextObject {
         heldText = "";
         currentIndex = 0;
         isActive = false;
+        super.hasBeenCompletedOnce = true;
         isFinished = false;
         if (super.loadNewSceneOnFinish) {
           try {
