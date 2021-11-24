@@ -89,6 +89,7 @@ void setup()
   
   studyRoomScene.addTextObject(moveToLockFromStudy);
   studyRoomScene.addTextObject(desk);
+  studyRoomScene.addTextObject(cabinet);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
   
