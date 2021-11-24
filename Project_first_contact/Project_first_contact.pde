@@ -80,9 +80,12 @@ void setup()
   CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
   MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*", 
     width / 2 - 120, height -120, "", 17, color(255), 220, 420, "speechBubble.png", 50, 50, 0.01f);
+  MultiPartScrollingTextObject cabinet = new MultiPartScrollingTextObject("“Crap! It’s locked!”@ “What was the code? How the hell did I manage to forget it?”@->Insert Code<- ", 
+    width / 2 - 120, height -120, "", 17, color(255), 505, 450, "speechBubble.png", 50, 50, 0.01f);
 
 
   studyRoomScene.addTextObject(desk);
+  studyRoomScene.addTextObject(cabinet);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
 
@@ -180,7 +183,6 @@ void draw()
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
-  println("x = " + mouseX, "y = " + mouseY);
 }
 
 void mouseClicked() {
