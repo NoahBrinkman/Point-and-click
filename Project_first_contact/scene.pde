@@ -8,6 +8,8 @@ class Scene {
 
   private TextManager textManager;
   
+  private ArrayList<ImageInScene> imagesToLoad;
+  
   public boolean useUI;
   
   public Scene(String sceneName, String backgroundImageFile) {
@@ -17,12 +19,18 @@ class Scene {
     gameObjects = new ArrayList<GameObject>();
     markedForDeathGameObjects = new ArrayList<GameObject>();
     recentlyAddedGameObjects = new ArrayList<GameObject>();
+    imagesToLoad = new ArrayList<ImageInScene>();
     textManager = new TextManager();
   }
 
   public void addTextObject(TextObject object) {
     textManager.textObjects.add(object);
   }
+  
+    public void addImage(ImageInScene image) {
+    imagesToLoad.add(image);
+  }
+  
   
     public void removeFromTextObjecs(TextObject object) {
     textManager.markedForDeathTextObjects.add(object);
@@ -62,6 +70,11 @@ class Scene {
     for (GameObject object : gameObjects) {
       object.draw();
     }
+    
+    for(ImageInScene image : imagesToLoad){
+      image.draw();
+    }
+    
     textManager.draw();
   }
 

@@ -17,8 +17,9 @@ class TextManager {
     if (currentTextObject.text != "") {
       otherTextIsAlreadyActive = true;
       if (currentTextObject.showRect) {
+        stroke(255);
         strokeWeight(4);
-        fill(255);
+        fill(0);
         rect(0, height - 200, width, 200, 8);
       } else {
         if (currentTextObject.textBoxImageName != "") image(currentTextObject.textBoxImage, currentTextObject.xPos, currentTextObject.yPos);

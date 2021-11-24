@@ -19,7 +19,7 @@ class TextObject {
   boolean useHoverButton;
   PImage hoverButtonImage;
   boolean mouseIsHoveringOverButton;
-
+  
   private boolean startOnAwake;
   private boolean loadNewSceneOnFinish;
   private String sceneName;
