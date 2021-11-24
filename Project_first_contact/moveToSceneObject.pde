@@ -3,7 +3,8 @@ class MoveToSceneObject extends GameObject {
   private String nextSceneIdentifier;
   private boolean moveBack;
   private boolean quitGameInstead;
-
+  private boolean playSound = true;
+  
   public MoveToSceneObject(String identifier, int x, int y, int owidth, int oheight, boolean moveBack) {
     this(identifier, x, y, owidth, oheight, "", moveBack);
   }
@@ -32,7 +33,11 @@ class MoveToSceneObject extends GameObject {
     this.nextSceneIdentifier = nextSceneIdentifier;
     this.moveBack = false;
   }
-
+  
+  void dontPlaySound(){
+    playSound = false;
+  }
+  
   @Override
     public void mouseClicked() {
     super.mouseClicked();
@@ -45,7 +50,7 @@ class MoveToSceneObject extends GameObject {
         exit();
         return;
       }
-      soundManager.playSound(soundManager.doorOpenSFX);
+      if(playSound) soundManager.playSound(soundManager.doorOpenSFX);
       if (moveBack) {
         sceneManager.goToPreviousScene();
       } else {

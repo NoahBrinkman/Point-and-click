@@ -11,9 +11,9 @@ class NumberPuzzle extends MoveToSceneObject {
     super(identifier, x, y, owidth, oheight, nextSceneIdentifier);
     solution = puzzleSolution;
     for (int i = 0; i < String.valueOf(solution).length(); i++) {
-      NumberPuzzleArrow upArrow = new NumberPuzzleArrow(true, x + (i * 75), y - 85, x + (i * 75)+ 60, y - 85, x + (i * 75)+ 30, y - 125);
-      NumberPuzzleArrow downArrow = new NumberPuzzleArrow(false, x + (i * 75), y + 25, x + (i * 75)+ 60, y + 25, x + (i * 75)+ 30, y + 65);
-      NumberAndArrows number = new NumberAndArrows(0, upArrow, downArrow, x + (i * 75), y);
+      NumberPuzzleArrow upArrow = new NumberPuzzleArrow(true, x + (i * 45), y - 45, x + (i * 45)+ 25, y - 45, x + (i * 45)+ 12, y - 60);
+      NumberPuzzleArrow downArrow = new NumberPuzzleArrow(false, x + (i * 45), y + 10 , x + (i * 45)+ 25, y + 10, x + (i * 45)+ 12, y + 25);
+      NumberAndArrows number = new NumberAndArrows(0, upArrow, downArrow, x + (i * 44), y);
       numbersWithArrows.add(number);
       sceneToLoad = nextSceneIdentifier;
     }
