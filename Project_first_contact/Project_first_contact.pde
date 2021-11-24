@@ -29,7 +29,7 @@ void setup()
   mainMenuScene.addImage(ghost);
   mainMenuScene.addGameObject(quitGame);
   mainMenuScene.addGameObject(startGame);
-
+  mainMenuScene.useUI = false;
 
   Scene startScene = new Scene("startScene", "blackground.png");
   startScene.useUI = false;
@@ -80,33 +80,34 @@ void setup()
 
   Collectable keyToGarden = new Collectable("keyToGarden", "key.png");
   CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
-  
+
   MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*", 
     width / 2 - 120, height -120, "", 17, color(255), 220, 420, "speechBubble.png", 50, 50, 0.01f);
-  
+
   MultiPartScrollingTextObject moveToLockFromStudy = new MultiPartScrollingTextObject("“Crap! It’s locked!”", width / 2 - 120, height -120, "", 17, color(255), 470, 400, "speechBubble.png", 50, 50, 0.01f);
   moveToLockFromStudy.loadSceneOnComplete("numberLock");
-  
+
   studyRoomScene.addTextObject(moveToLockFromStudy);
   studyRoomScene.addTextObject(desk);
-  studyRoomScene.addTextObject(cabinet);
+  //studyRoomScene.addTextObject(cabinet);
   studyRoomScene.addGameObject(keyToGardenObject);
   studyRoomScene.addGameObject(tolivingRoomFromStudy);
-  
-  Scene numberLockScene = new Scene("numberLock","lock.png");
-  NumberPuzzle puzzle = new NumberPuzzle("numberPuzzle",402,575,10,150,"openCabinet",1013);
+
+  Scene numberLockScene = new Scene("numberLock", "lock.png");
+  NumberPuzzle puzzle = new NumberPuzzle("numberPuzzle", 402, 575, 10, 150, "openCabinet", 1013);
   numberLockScene.addGameObject(puzzle);
-  MoveToSceneObject goBackToStudy =  new MoveToSceneObject("backAwayFromCabinet",width / 2 - 50,height - 75,50,50,"arrowDown.png",true);
+  MoveToSceneObject goBackToStudy =  new MoveToSceneObject("backAwayFromCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", true);
   numberLockScene.addGameObject(goBackToStudy);
-  
+
   RequireObject gardenLock = new RequireObject("“It’s locked. Where did I store the key?”", 
     width / 2 - 120, height -120, "", 17, color(255), 215, 600, "zoom.png", 50, 50, keyToGarden, toGarden);
   livingRoomScene.addTextObject(gardenLock);
-  
-  Scene cabinetScene = new Scene("openCabinet","cabinet.png");
-  MoveToSceneObject goBackToStudyOpenCabinet =  new MoveToSceneObject("backAwayFromOpenCabinet",width / 2 - 50,height - 75,50,50,"arrowDown.png",true);
+
+  Scene cabinetScene = new Scene("openCabinet", "cabinet.png");
+  MoveToSceneObject goBackToStudyOpenCabinet =  new MoveToSceneObject("backAwayFromOpenCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", true);
+  goBackToStudyOpenCabinet.dontPlaySound();
   cabinetScene.addGameObject(goBackToStudyOpenCabinet);
-  
+
   Scene gardenScene = new Scene("garden", "garden.png");
   MoveToSceneObject gardenToLivingRoom = new MoveToSceneObject("moveToLivingRoomFromGarden", 700, 450, 50, 50, "arrowRight.png", true);
   MultiPartScrollingTextObject pet_dog = new MultiPartScrollingTextObject("*It’s where your dog, Chip, used to sleep in \nwhenever he wasn’t persuading you to let him sleep in your bed together with “mommy” and “daddy”* @*There he lies. Sleeping peacefully* @“You were the only one that loved me unconditionally”@“Despite all the mistakes I made, you still looked at me the same way you did that first time we met” @*You pause for a bit. Reminiscing about something* @“I still remember my kid running inside with you in his arms and crying for me and mommy to let you stay” @“I’m glad I made the right decision” @->Pet your dog<- @“I’m going to miss you, Chip” @**You feel a little lighter**  ", 
@@ -116,7 +117,7 @@ void setup()
   gardenScene.addTextObject(pet_dog);
   gardenScene.addTextObject(tree);
   gardenScene.addGameObject(gardenToLivingRoom);
-  
+
   sceneManager.addScene(mainMenuScene);
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
