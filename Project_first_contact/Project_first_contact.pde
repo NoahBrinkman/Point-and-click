@@ -22,8 +22,14 @@ void setup()
   textFont(createFont("filetto.ttf", 128));
 
   Scene mainMenuScene = new Scene("mainMenu", "bedRoom.png");
- // ImageInScene = 
-  
+  ImageInScene ghost = new ImageInScene("ghost.png", 400, height / 2 - 250, 500, 500);
+  MoveToSceneObject startGame = new MoveToSceneObject("startButton", width / 2 - 125, height /2, 250, 75, "startButton.png", "startScene");
+  MoveToSceneObject quitGame = new MoveToSceneObject("quitButton", width / 2 -125, height /2 + 100, 250, 75, "quitButton.png", true, true);
+  mainMenuScene.addImage(ghost);
+  mainMenuScene.addGameObject(quitGame);
+  mainMenuScene.addGameObject(startGame);
+
+
   Scene startScene = new Scene("startScene", "blackground.png");
   startScene.useUI = false;
   soundManager = new SoundManager();
@@ -145,6 +151,7 @@ void setup()
    sceneManager.addScene(scene06);
    */
 
+  sceneManager.addScene(mainMenuScene);
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
   sceneManager.addScene(livingRoomScene);

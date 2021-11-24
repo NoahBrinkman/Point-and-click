@@ -67,12 +67,12 @@ class Scene {
 
   public void draw(int wwidth, int wheight) {
     image(backgroundImage, 0, 0, wwidth, wheight);
-    for (GameObject object : gameObjects) {
-      object.draw();
-    }
-    
+       
     for(ImageInScene image : imagesToLoad){
       image.draw();
+    }
+    for (GameObject object : gameObjects) {
+      object.draw();
     }
     
     textManager.draw();
