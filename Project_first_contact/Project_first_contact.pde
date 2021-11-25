@@ -129,7 +129,7 @@ void setup()
   finalScene.addTextObject(finalText);
 
   ImageInScene noteBook = new ImageInScene("notebook.png", width - 250, 0, 250, 150);
-  Objective petDog = new Objective("dogObjectiveIncomplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
+  Objective petDog = new Objective("dogObjectiveInComplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
   Objective pictureOfFamily = new Objective("familePictureObjectiveIncomplete.png", width - 250, 10, 250, 150, "familePictureObjectiveComplete.png", familyPicture);
   Objective finalGoodbye = new Objective("goodbyeToBodyObjectiveIncomplete.png", width - 250, 45, 250, 150, "goodbyeToBodyObjectiveComplete.png", bodyInteraction);
   finalGoodbye.isFinalObjective = true;
