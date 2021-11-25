@@ -163,7 +163,6 @@ void draw()
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
-  println("x = " + mouseX, "y = " + mouseY);
 }
 
 void mouseClicked() {
