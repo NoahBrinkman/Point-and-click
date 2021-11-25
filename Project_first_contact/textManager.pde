@@ -1,9 +1,9 @@
 class TextManager {
 
-  ArrayList<TextObject> textObjects;
-  ArrayList<TextObject> markedForDeathTextObjects;
-  TextObject currentTextObject;
-  boolean otherTextIsAlreadyActive;
+  private ArrayList<TextObject> textObjects;
+  private ArrayList<TextObject> markedForDeathTextObjects;
+  private TextObject currentTextObject;
+  private boolean otherTextIsAlreadyActive;
 
 
   TextManager() {

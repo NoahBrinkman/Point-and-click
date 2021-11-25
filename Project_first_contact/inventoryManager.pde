@@ -1,4 +1,5 @@
 class InventoryManager {
+  
   private ArrayList<Collectable> collectables;
   private ArrayList<Collectable> markedForDeathCollectables;
   

@@ -1,16 +1,16 @@
 class NumberPuzzleArrow {
 
-  boolean facingUp;
-  int x1;
-  int x2;
-  int x3;
-  int y1;
-  int y2;
-  int y3;
+  private boolean facingUp;
+  private int x1;
+  private int x2;
+  private int x3;
+  private int y1;
+  private int y2;
+  private int y3;
 
-  boolean clicked;
+  private boolean clicked;
 
-  PShape triangle;
+  private PShape triangle;
 
   NumberPuzzleArrow(boolean _facingUp, int _x1, int _y1, int _x2, int _y2, int _x3, int _y3)
   {

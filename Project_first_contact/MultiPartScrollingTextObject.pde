@@ -1,17 +1,17 @@
 class MultiPartScrollingTextObject extends TextObject {
 
-  String[] textParts;
-  int currentIndex = -1;
+  private String[] textParts;
+  private int currentIndex = -1;
 
-  String heldText = ".";
-  String currentString;
-  float secondsUntilNextChar = .01f;
-  float timer = .01f;
-  int currentCharIndex = -1;
-  boolean isFinished = false;
-  String buttonImageName;
-  String objectivetoComplete;
-  Objective objective;
+  private String heldText = ".";
+  private String currentString;
+  private float secondsUntilNextChar = .01f;
+  private float timer = .01f;
+  private int currentCharIndex = -1;
+  private boolean isFinished = false;
+  private String buttonImageName;
+  private boolean linkedToFinalObjective;
+  private boolean quitGameOnFinish;
 
   MultiPartScrollingTextObject() {
     super();
@@ -34,7 +34,7 @@ class MultiPartScrollingTextObject extends TextObject {
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
   }
-  MultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters, String pObjective) {
+  MultiPartScrollingTextObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor, int buttonX, int buttonY, String buttonImageName, int buttonWidth, int buttonHeight, float timeBetweenCharacters, boolean linkToFinalObjective) {
     super(".", x, y, imageName, _fontSize, _fontColor, buttonX, buttonY, buttonImageName, buttonWidth, buttonHeight);
     textParts = _text.split("@");
     currentIndex = 0;
@@ -42,10 +42,12 @@ class MultiPartScrollingTextObject extends TextObject {
     currentCharIndex = -1;
     secondsUntilNextChar = timeBetweenCharacters;
     currentString = textParts[0];
-    //when code Objective code is done you can uncomment this
-    objectivetoComplete = "";
-    //objectivetoComplete = pObjective;
+    linkedToFinalObjective = linkToFinalObjective;
     this.buttonImageName = buttonImageName;
+  }
+
+  void quitGameOnFinish() {
+    quitGameOnFinish = true;
   }
 
   @Override
@@ -77,10 +79,6 @@ class MultiPartScrollingTextObject extends TextObject {
     public void mouseClicked() {    
     if (isActive) {
       if (currentIndex + 1 >= textParts.length && isFinished) {
-        if (objectivetoComplete != "") {
-          //when code Objective code is done you can uncomment this
-          //objective.completeObjective(objectivetoComplete);
-        }
         currentString = textParts[0];
         heldText = "";
         currentIndex = 0;
@@ -94,6 +92,10 @@ class MultiPartScrollingTextObject extends TextObject {
           catch(Exception e) { 
             println(e.getMessage());
           }
+        }
+        if (quitGameOnFinish) {
+          exit();
+          return;
         }
       } else if (isFinished) {
         currentIndex++;
@@ -111,6 +113,15 @@ class MultiPartScrollingTextObject extends TextObject {
       return;
     }
     if (useButton && mouseIsHoveringOverButton()) {
+      if (linkedToFinalObjective && uIManager.allObjectivesButFinalComplete()) {
+        println("hi");
+        try {
+          sceneManager.goToScene("finalScene");
+        }
+        catch(Exception e) {
+          println(e);
+        }
+      }
       isActive = true;
     }
   }

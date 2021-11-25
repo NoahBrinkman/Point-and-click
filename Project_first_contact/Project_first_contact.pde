@@ -50,19 +50,17 @@ void setup()
   roomIntro.loadOnAwake();
 
   MultiPartScrollingTextObject bodyInteraction = new MultiPartScrollingTextObject("*Moving closer to the body you start recognizing its sad appearance.\nIts curly grey hair, the lifeless blue eyes looking at the void and its moustache.\nIts burly moustache.*@“Is that me?”\n“Am I…\nDEAD?!”@*You keep looking at the body, searching for any signs of life*@*Now it only looks like a lifeless blob to you*@“I’m not ready.\nI don’t want to go.\nNot without saying goodbye.”@*You move away from the body. As if you’re scared of it. Scared of yourself*", 
-    width / 2 - 250, height -110, "", 17, color(255), 150, 520, "speechBubble.png", 100, 75, 0.01f);
+    width / 2 - 250, height -110, "", 17, color(255), 150, 520, "speechBubble.png", 100, 75, 0.01f, true);
   bedRoomScene.addTextObject(bodyInteraction);
   MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 17, color(255), 550, 450, "zoom.png", 100, 70, 0.01f);
   MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(255), 350, 280, "speechBubble.png", 100, 200, 0.01f);
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 430, 600, 50, 50, "arrowRight.png", "livingRoom");
-  MultiPartScrollingTextObject objectivetest = new MultiPartScrollingTextObject("This here exists to test out if Objective works", width / 2 - 250, height -110, "", 15, color(255), 500, 500, "zoom.png", 50, 50, 0.01f, "pet dog");
   //bodyInteraction.loadSceneOnComplete("nightStand");
   //Objective objective = new Objective("", width-100, 100);
   //uIManager.addToUI(objective);
   bedRoomScene.addGameObject(toLivingRoom);
   bedRoomScene.addTextObject(nightStandInteraction);
   bedRoomScene.addTextObject(wardrobeInteraction);
-  bedRoomScene.addTextObject(objectivetest);
   bedRoomScene.addTextObject(roomIntro);
 
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
@@ -71,7 +69,7 @@ void setup()
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
-    width / 2 - 120, height -120, "", 17, color(255), 90, 450, "speechBubble.png", 190, 120, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 320, 470, "speechBubble.png", 190, 120, 0.01f);
   livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
 
@@ -105,7 +103,10 @@ void setup()
 
   Scene cabinetScene = new Scene("openCabinet", "cabinet.png");
   MoveToSceneObject goBackToStudyOpenCabinet =  new MoveToSceneObject("backAwayFromOpenCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", true);
+  MultiPartScrollingTextObject familyPicture = new MultiPartScrollingTextObject("*A photo of your family. There you can see yourself and your wife hugging.\nIn front of you there is Thomas, your son, with his best friend in his arms, Chip, your family dog”@“Oh. We were such a beautiful family. Living the “American dream” or what we thought it was”@“I wish I wasn’t stuck in this room all the time. Filling papers like there was no tomorrow.\nBarely paying attention to all of you”@“I'll miss all of you so much…”@**You feel a little lighter**", 
+    width / 2 - 120, height -120, "", 17, color(255), 125, 400, "speechBubble.png", 300, 200, 0.01f);
   goBackToStudyOpenCabinet.dontPlaySound();
+  cabinetScene.addTextObject(familyPicture);
   cabinetScene.addGameObject(goBackToStudyOpenCabinet);
 
   Scene gardenScene = new Scene("garden", "garden.png");
@@ -118,6 +119,26 @@ void setup()
   gardenScene.addTextObject(tree);
   gardenScene.addGameObject(gardenToLivingRoom);
 
+  Scene finalScene = new Scene("finalScene", "blackground.png");
+  MultiPartScrollingTextObject finalText = new MultiPartScrollingTextObject("*You look at your body. No longer looking like a lifeless blob.\nIt looks just like you.\nAs if you peacefully fell asleep*@“I’m ready. I can go now”@*You’re no longer scared of the body*@** It's time to go now. Like all things, you come to an end ... and that is fine**@Like our characters life. This game has now ended@Thank you for playing!@ The game will close itself now. ", 
+    width / 2 - 250, height / 2, "", 17, color(255), 0.01f);
+  finalText.quitGameOnFinish();
+  finalText.loadOnAwake();
+  finalText.dontshowRect();
+  finalScene.useUI = false;
+  finalScene.addTextObject(finalText);
+
+  ImageInScene noteBook = new ImageInScene("notebook.png", width - 250, 0, 250, 150);
+  Objective petDog = new Objective("dogObjectiveIncomplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
+  Objective pictureOfFamily = new Objective("familePictureObjectiveIncomplete.png", width - 250, 10, 250, 150, "familePictureObjectiveComplete.png", familyPicture);
+  Objective finalGoodbye = new Objective("goodbyeToBodyObjectiveIncomplete.png", width - 250, 45, 250, 150, "goodbyeToBodyObjectiveComplete.png", bodyInteraction);
+  finalGoodbye.isFinalObjective = true;
+  
+  uIManager.addToUI(noteBook);
+  uIManager.addToUI(petDog);
+  uIManager.addToUI(pictureOfFamily);
+  uIManager.addToUI(finalGoodbye);
+
   sceneManager.addScene(mainMenuScene);
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
@@ -126,6 +147,7 @@ void setup()
   sceneManager.addScene(numberLockScene);
   sceneManager.addScene(cabinetScene);
   sceneManager.addScene(gardenScene);
+  sceneManager.addScene(finalScene);
   sceneManager.getCurrentScene().awake();
   uIManager.awake();
 }

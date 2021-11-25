@@ -1,26 +1,26 @@
 class TextObject {
 
-  String text;
-  int xPos;
-  int yPos;
-  PImage textBoxImage;
-  String textBoxImageName;
-  int fontSize;
-  color fontColor;
-  boolean showRect;
-  boolean isActive = false;
-  boolean hasBeenCompletedOnce;
+  private String text;
+  private int xPos;
+  private int yPos;
+  private PImage textBoxImage;
+  private String textBoxImageName;
+  private int fontSize;
+  private color fontColor;
+  private boolean showRect;
+  public boolean isActive = false;
+  public boolean hasBeenCompletedOnce;
 
 
-  boolean useButton;
-  int buttonPosX;
-  int buttonPosY;
-  PImage cursorImage;
-  int buttonImageWidth;
-  int buttonImageHeight;
-  boolean useHoverButton;
-  PImage hoverButtonImage;
-  boolean mouseIsHoveringOverButton;
+  public boolean useButton;
+  private int buttonPosX;
+  private int buttonPosY;
+  private PImage cursorImage;
+  private int buttonImageWidth;
+  private int buttonImageHeight;
+  public boolean useHoverButton;
+  private PImage hoverButtonImage;
+  private boolean mouseIsHoveringOverButton;
 
   private boolean startOnAwake;
   private boolean loadNewSceneOnFinish;

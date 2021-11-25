@@ -1,11 +1,11 @@
 class NumberAndArrows {
 
-  int currentNumber;
-  NumberPuzzleArrow upArrow;
-  NumberPuzzleArrow downArrow;
+  private int currentNumber;
+  private NumberPuzzleArrow upArrow;
+  private NumberPuzzleArrow downArrow;
 
-  int xPosition;
-  int yPosition;
+  private int xPosition;
+  private int yPosition;
 
   NumberAndArrows(int _startNumber, NumberPuzzleArrow _upArrow, NumberPuzzleArrow _downArrow, int x, int y) {
     currentNumber = _startNumber;

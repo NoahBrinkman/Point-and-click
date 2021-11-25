@@ -1,4 +1,5 @@
 class Scene {
+  
   private String sceneName;
   private PImage backgroundImage;
   private ArrayList<GameObject> gameObjects;

@@ -1,7 +1,7 @@
 class RequireObject extends TextObject {
+  
   private Collectable collectable;
   private GameObject replaceWith;
-  boolean unlocked; 
   
   
   RequireObject(String _text, int x, int y, String imageName, int _fontSize, color _fontColor

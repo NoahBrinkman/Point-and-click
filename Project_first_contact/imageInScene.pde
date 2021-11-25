@@ -1,10 +1,10 @@
 class ImageInScene{
   
-  PImage imageToLoad;
-  int xPos;
-  float yPos;
-  int widthOfImage;
-  int heightOfImage;
+  private PImage imageToLoad;
+  private int xPos;
+  private float yPos;
+  private int widthOfImage;
+  private int heightOfImage;
   
   ImageInScene(String imageName, int x,int y,int imageWidth,int imageHeight){
     if(imageName != ""){
@@ -14,6 +14,10 @@ class ImageInScene{
     yPos = y;
     widthOfImage = imageWidth;
     heightOfImage = imageHeight;
+  }
+  
+  Objective getMeIfObjective(){
+    return null;
   }
   
   void draw(){

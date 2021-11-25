@@ -1,8 +1,9 @@
 class SoundManager {
-  SoundFile doorOpenSFX;
-  SoundFile characterAddedInTextSFX;
-  SoundFile itemObtainedSFX;
-  SoundFile objectiveCompleteSFX;
+
+  private SoundFile doorOpenSFX;
+  private SoundFile characterAddedInTextSFX;
+  private SoundFile itemObtainedSFX;
+  private SoundFile objectiveCompleteSFX;
 
   SoundManager() {
     doorOpenSFX = new SoundFile(Project_first_contact.this, "DoorOpening.mp3");
@@ -10,11 +11,11 @@ class SoundManager {
     itemObtainedSFX = new SoundFile(Project_first_contact.this, "ItemObtained.mp3");
     objectiveCompleteSFX = new SoundFile(Project_first_contact.this, "ObjectiveComplete.mp3");
   }
-  
-  void playSound(SoundFile file){
-    if(!file.isPlaying()) file.play();
+
+  void playSound(SoundFile file) {
+    if (!file.isPlaying()) file.play();
   }
-    void playSound(SoundFile file, boolean allowOverlap){
-    if(!file.isPlaying() || allowOverlap) file.play();
+  void playSound(SoundFile file, boolean allowOverlap) {
+    if (!file.isPlaying() || allowOverlap) file.play();
   }
 }

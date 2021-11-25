@@ -1,7 +1,7 @@
 class Collectable {
+  
   private String name;
   private String gameObjectImageFile;
-  //Could be expanded to add an amount, for example
   
   public Collectable(String name, String gameObjectImageFile) {
     this.name = name;

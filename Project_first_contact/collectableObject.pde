@@ -1,4 +1,5 @@
 class CollectableObject extends GameObject { 
+  
   private Collectable collectable;
   private GameObject replaceWith;
   private boolean willReplaceByAnotherGameObject;

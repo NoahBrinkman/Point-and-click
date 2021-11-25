@@ -1,7 +1,7 @@
 class MultiPartTextObject extends TextObject {
 
-  String[] textParts;
-  int currentIndex = -1;
+ private String[] textParts;
+ private int currentIndex = -1;
 
   MultiPartTextObject() {
     super();

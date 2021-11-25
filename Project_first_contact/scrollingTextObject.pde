@@ -1,10 +1,10 @@
 class ScrollingTextObject extends TextObject {
 
-  String heldText = ".";
-  float secondsUntilNextChar = .01f;
-  float timer = .01f;
-  int currentCharIndex = -1;
-  boolean isFinished = false;
+ private String heldText = ".";
+ private float secondsUntilNextChar = .01f;
+ private float timer = .01f;
+ private int currentCharIndex = -1;
+ private boolean isFinished = false;
 
 
   ScrollingTextObject() {
