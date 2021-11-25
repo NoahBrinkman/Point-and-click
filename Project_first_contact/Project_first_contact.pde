@@ -21,12 +21,10 @@ void setup()
 {
   textFont(createFont("filetto.ttf", 128));
 
-  Scene mainMenuScene = new Scene("mainMenu", "bedRoom.png");
-  ImageInScene ghost = new ImageInScene("ghost.png", 400, height / 2 - 250, 500, 500);
-  MoveToSceneObject startGame = new MoveToSceneObject("startButton", width / 2 - 125, height /2, 250, 75, "startButton.png", "startScene");
+  Scene mainMenuScene = new Scene("mainMenu", "mainMenuBackground.png");
+  MoveToSceneObject startGame = new MoveToSceneObject("startButton", width / 2 - 125, height /2 + 100, 250, 75, "startButton.png", "startScene");
   startGame.dontPlaySound();
-  MoveToSceneObject quitGame = new MoveToSceneObject("quitButton", width / 2 -125, height /2 + 100, 250, 75, "quitButton.png", true, true);
-  mainMenuScene.addImage(ghost);
+  MoveToSceneObject quitGame = new MoveToSceneObject("quitButton", width / 2 -125, height /2 + 200, 250, 75, "quitButton.png", true, true);
   mainMenuScene.addGameObject(quitGame);
   mainMenuScene.addGameObject(startGame);
   mainMenuScene.useUI = false;
@@ -54,7 +52,8 @@ void setup()
   bedRoomScene.addTextObject(bodyInteraction);
   MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 17, color(255), 550, 450, "zoom.png", 100, 70, 0.01f);
   MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(255), 350, 280, "speechBubble.png", 100, 200, 0.01f);
-  MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 430, 600, 50, 50, "arrowRight.png", "livingRoom");
+  MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 350, 450, 200, 317, "studyroomdoorLowOpacity.png", "livingRoom");
+  toLivingRoom.setHoverImage("studyroomdoor.png");
   //bodyInteraction.loadSceneOnComplete("nightStand");
   //Objective objective = new Objective("", width-100, 100);
   //uIManager.addToUI(objective);
@@ -64,9 +63,10 @@ void setup()
   bedRoomScene.addTextObject(roomIntro);
 
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
-  MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 650, 420, 50, 50, "arrowUp.png", "bedRoom");
+  MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 450, 250, 50, 50, "arrowUp.png", "bedRoom");
   livingRoomScene.addGameObject(toBedRoom);
-  MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
+  MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 600, 350, 200, 317, "studyroomdoorLowOpacity.png", "studyRoom");
+  tostudyRoom.setHoverImage("studyroomdoor.png");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
     width / 2 - 120, height -120, "", 17, color(255), 200, 470, "speechBubble.png", 190, 120, 0.01f);
@@ -94,7 +94,7 @@ void setup()
   Scene numberLockScene = new Scene("numberLock", "lock.png");
   NumberPuzzle puzzle = new NumberPuzzle("numberPuzzle", 402, 575, 10, 150, "openCabinet", 1013);
   numberLockScene.addGameObject(puzzle);
-  MoveToSceneObject goBackToStudy =  new MoveToSceneObject("backAwayFromCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", true);
+  MoveToSceneObject goBackToStudy =  new MoveToSceneObject("backAwayFromCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", "studyRoom");
   numberLockScene.addGameObject(goBackToStudy);
 
   RequireObject gardenLock = new RequireObject("“It’s locked. Where did I store the key?”", 
@@ -102,7 +102,7 @@ void setup()
   livingRoomScene.addTextObject(gardenLock);
 
   Scene cabinetScene = new Scene("openCabinet", "cabinet.png");
-  MoveToSceneObject goBackToStudyOpenCabinet =  new MoveToSceneObject("backAwayFromOpenCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", true);
+  MoveToSceneObject goBackToStudyOpenCabinet =  new MoveToSceneObject("backAwayFromOpenCabinet", width / 2 - 50, height - 75, 50, 50, "arrowDown.png", "studyRoom");
   MultiPartScrollingTextObject familyPicture = new MultiPartScrollingTextObject("*A photo of your family. There you can see yourself and your wife hugging.\nIn front of you there is Thomas, your son, with his best friend in his arms, Chip, your family dog”@“Oh. We were such a beautiful family. Living the “American dream” or what we thought it was”@“I wish I wasn’t stuck in this room all the time. Filling papers like there was no tomorrow.\nBarely paying attention to all of you”@“I'll miss all of you so much…”@**You feel a little lighter**", 
     width / 2 - 120, height -120, "", 17, color(255), 125, 400, "speechBubble.png", 300, 200, 0.01f);
   goBackToStudyOpenCabinet.dontPlaySound();
@@ -129,7 +129,7 @@ void setup()
   finalScene.addTextObject(finalText);
 
   ImageInScene noteBook = new ImageInScene("notebook.png", width - 250, 0, 250, 150);
-  Objective petDog = new Objective("dogObjectiveInComplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
+  Objective petDog = new Objective("dogObjectiveIncomplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
   Objective pictureOfFamily = new Objective("familePictureObjectiveIncomplete.png", width - 250, 10, 250, 150, "familePictureObjectiveComplete.png", familyPicture);
   Objective finalGoodbye = new Objective("goodbyeToBodyObjectiveIncomplete.png", width - 250, 45, 250, 150, "goodbyeToBodyObjectiveComplete.png", bodyInteraction);
   finalGoodbye.isFinalObjective = true;
@@ -165,7 +165,7 @@ void draw()
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
-  println("x = " + mouseX, "y = " + mouseY);
+  //println("x = " + mouseX, "y = " + mouseY);
 }
 
 void mouseClicked() {

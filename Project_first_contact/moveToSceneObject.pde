@@ -52,6 +52,7 @@ class MoveToSceneObject extends GameObject {
       }
       if(playSound) soundManager.playSound(soundManager.doorOpenSFX);
       if (moveBack) {
+        println("Hi");
         sceneManager.goToPreviousScene();
       } else {
         try {

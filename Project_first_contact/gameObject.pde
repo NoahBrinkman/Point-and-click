@@ -41,6 +41,7 @@ class GameObject {
   public void draw() {
     if (hasImage) {
       if (mouseIsHovering && hasHoverImage) {
+        println("hi");
         image(gameObjectImageHover, x, y, owidth, oheight);
       } else {
         image(gameObjectImage, x, y, owidth, oheight);
