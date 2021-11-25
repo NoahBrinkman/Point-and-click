@@ -8,7 +8,7 @@ class SoundManager {
 
   SoundManager() {
     doorOpenSFX = new SoundFile(Project_first_contact.this, "DoorOpening.mp3");
-    lockedDoorSFX = new SoundFile(Project_first_contact.this, "lockedDoor.mp3");
+    lockedDoorSFX = new SoundFile(Project_first_contact.this, "lockedDoor");
     characterAddedInTextSFX = new SoundFile(Project_first_contact.this, "CharacterInText.mp3");
     itemObtainedSFX = new SoundFile(Project_first_contact.this, "ItemObtained.mp3");
     objectiveCompleteSFX = new SoundFile(Project_first_contact.this, "ObjectiveComplete.mp3");

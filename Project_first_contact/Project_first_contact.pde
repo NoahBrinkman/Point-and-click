@@ -55,6 +55,9 @@ void setup()
   MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 17, color(255), 550, 450, "zoom.png", 100, 70, 0.01f);
   MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(255), 350, 280, "speechBubble.png", 100, 200, 0.01f);
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 430, 600, 50, 50, "arrowRight.png", "livingRoom");
+  //bodyInteraction.loadSceneOnComplete("nightStand");
+  //Objective objective = new Objective("", width-100, 100);
+  //uIManager.addToUI(objective);
   bedRoomScene.addGameObject(toLivingRoom);
   bedRoomScene.addTextObject(nightStandInteraction);
   bedRoomScene.addTextObject(wardrobeInteraction);
