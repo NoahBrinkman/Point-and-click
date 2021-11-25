@@ -69,7 +69,7 @@ void setup()
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
-    width / 2 - 120, height -120, "", 17, color(255), 320, 470, "speechBubble.png", 190, 120, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 200, 470, "speechBubble.png", 190, 120, 0.01f);
   livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
 
@@ -129,7 +129,7 @@ void setup()
   finalScene.addTextObject(finalText);
 
   ImageInScene noteBook = new ImageInScene("notebook.png", width - 250, 0, 250, 150);
-  Objective petDog = new Objective("dogObjectiveIncomplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
+  Objective petDog = new Objective("dogObjectiveInComplete.png", width - 250, -25, 250, 150, "dogObjectiveComplete.png", pet_dog);
   Objective pictureOfFamily = new Objective("familePictureObjectiveIncomplete.png", width - 250, 10, 250, 150, "familePictureObjectiveComplete.png", familyPicture);
   Objective finalGoodbye = new Objective("goodbyeToBodyObjectiveIncomplete.png", width - 250, 45, 250, 150, "goodbyeToBodyObjectiveComplete.png", bodyInteraction);
   finalGoodbye.isFinalObjective = true;
@@ -165,6 +165,7 @@ void draw()
 
 void mouseMoved() {
   sceneManager.getCurrentScene().mouseMoved();
+  println("x = " + mouseX, "y = " + mouseY);
 }
 
 void mouseClicked() {
