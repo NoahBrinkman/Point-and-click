@@ -67,15 +67,15 @@ void setup()
   tostudyRoom.setHoverImage("studyroomdoor.png");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
-    width / 2 - 120, height -120, "", 17, color(255), 470, 560, "speechBubble.png", 190, 120, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 470, 560, "speechBubble.png", 200, 317, 0.01f);
   livingRoomScene.addTextObject(couch);
-  MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
-
+  MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 140, 410, 200, 317, "livingroomdoorLowOpacity.png", "garden");
+  toGarden.setHoverImage("livingroomdoor.png");
   Scene studyRoomScene = new Scene("studyRoom", "studyRoom.png");
-  MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 200, 650, 50, 50, "arrowLeft.png", "livingRoom");
-
+  MoveToSceneObject tolivingRoomFromStudy = new MoveToSceneObject("moveTolivingRoom", 515, 375, 200, 317, "studyroomdoorLowOpacity.png", "livingRoom");
+  tolivingRoomFromStudy.setHoverImage("studyroomdoor.png");
   Collectable keyToGarden = new Collectable("keyToGarden", "key.png");
-  CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 320, 380, 100, 50, keyToGarden);
+  CollectableObject keyToGardenObject = new CollectableObject("KeyObject", 525, 200, 25, 25, keyToGarden);
 
   MultiPartScrollingTextObject desk = new MultiPartScrollingTextObject("*You see the chair you used to sit on for hours on end, working*@*You hate that you loved being here*@*Suddenly you’re reminded of something*@“I need that photo. It was here somewhere. I remember”@*You feel an urge to find an old photo of you with your family*", 
     width / 2 - 120, height -120, "", 17, color(255), 220, 420, "speechBubble.png", 50, 50, 0.01f);
@@ -96,7 +96,7 @@ void setup()
   numberLockScene.addGameObject(goBackToStudy);
 
   RequireObject gardenLock = new RequireObject("“It’s locked. Where did I store the key?”", 
-    width / 2 - 120, height -120, "", 17, color(255), 215, 600, "zoom.png", 50, 50, keyToGarden, toGarden);
+    width / 2 - 120, height -120, "", 17, color(255), 140, 410, "zoom.png", 200, 317, keyToGarden, toGarden);
   livingRoomScene.addTextObject(gardenLock);
 
   Scene cabinetScene = new Scene("openCabinet", "cabinet.png");
