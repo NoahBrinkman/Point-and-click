@@ -50,16 +50,23 @@ void setup()
   MultiPartScrollingTextObject bodyInteraction = new MultiPartScrollingTextObject("*Moving closer to the body you start recognizing its sad appearance.\nIts curly grey hair, the lifeless blue eyes looking at the void and its moustache.\nIts burly moustache.*@“Is that me?”\n“Am I…\nDEAD?!”@*You keep looking at the body, searching for any signs of life*@*Now it only looks like a lifeless blob to you*@“I’m not ready.\nI don’t want to go.\nNot without saying goodbye.”@*You move away from the body. As if you’re scared of it. Scared of yourself*", 
     width / 2 - 250, height -110, "", 17, color(255), 150, 520, "speechBubble.png", 100, 75, 0.01f, true);
   bedRoomScene.addTextObject(bodyInteraction);
-  MultiPartScrollingTextObject nightStandInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*\n(Lead To nightstandScene remove this line when its implemented)", width / 2 - 250, height -110, "", 17, color(255), 550, 450, "zoom.png", 100, 70, 0.01f);
+  MultiPartScrollingTextObject deskInteraction = new MultiPartScrollingTextObject("*On top of your nightstand you see a photo of two people*", width / 2 - 250, height -110, "", 17, color(255), 550, 450, "zoom.png", 100, 70, 0.01f);
   MultiPartScrollingTextObject wardrobeInteraction = new MultiPartScrollingTextObject("*You open the wardrobe@You see your clothes@\"To be honest, I don't know why I opened the wardrobe, there is nothing here...\"", width / 2 - 250, height -110, "", 17, color(255), 350, 280, "speechBubble.png", 100, 200, 0.01f);
   MoveToSceneObject toLivingRoom = new MoveToSceneObject("moveToLivingRoom", 350, 450, 200, 317, "studyroomdoorLowOpacity.png", "livingRoom");
   toLivingRoom.setHoverImage("studyroomdoor.png");
-  //bodyInteraction.loadSceneOnComplete("nightStand");
+  deskInteraction.loadSceneOnComplete("desk");
   bedRoomScene.addGameObject(toLivingRoom);
-  bedRoomScene.addTextObject(nightStandInteraction);
+  bedRoomScene.addTextObject(deskInteraction);
   bedRoomScene.addTextObject(wardrobeInteraction);
   bedRoomScene.addTextObject(roomIntro);
-
+  
+  Scene deskScene = new Scene("desk","desk.png");
+  MoveToSceneObject backToBedRoom = new MoveToSceneObject("backToBedRoom",width /2 - 50, height - 100, 50,50,"arrowDown.png","bedRoom");
+  deskScene.addGameObject(backToBedRoom);
+    MultiPartScrollingTextObject pictureOfCouple = new MultiPartScrollingTextObject("*You look at the photo for about 2 minutes*@“Back when we looked young and lively…” @*You detect something written in black ink on the picture*@“I’ll love you forever@13th October Marie”@“It’s the gift she gave me for our anniversary. She was so happy…”@“We were in love…”@*You feel an immense sense of sadness throughout your body*@“I miss you so much honey...”@*For a second, you try to compose yourself, letting out a deep breath*", 
+    width / 2 - 120, height -120, "", 17, color(255), 580, 200, "speechBubble.png", 240, 365, 0.01f);
+  deskScene.addTextObject(pictureOfCouple);
+  
   Scene livingRoomScene = new Scene("livingRoom", "livingRoom.png");
   MoveToSceneObject toBedRoom = new MoveToSceneObject("moveToBedRoom", 450, 250, 50, 50, "arrowUp.png", "bedRoom");
   livingRoomScene.addGameObject(toBedRoom);
@@ -67,7 +74,7 @@ void setup()
   tostudyRoom.setHoverImage("studyroomdoor.png");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
-    width / 2 - 120, height -120, "", 17, color(255), 470, 560, "speechBubble.png", 200, 317, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 370, 500, "speechBubble.png", 200, 100, 0.01f);
   livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 140, 410, 200, 317, "livingroomdoorLowOpacity.png", "garden");
   toGarden.setHoverImage("livingroomdoor.png");
@@ -140,6 +147,7 @@ void setup()
   sceneManager.addScene(mainMenuScene);
   sceneManager.addScene(startScene);
   sceneManager.addScene(bedRoomScene);
+  sceneManager.addScene(deskScene);
   sceneManager.addScene(livingRoomScene);
   sceneManager.addScene(studyRoomScene);
   sceneManager.addScene(numberLockScene);

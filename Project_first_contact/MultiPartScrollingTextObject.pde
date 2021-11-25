@@ -114,7 +114,6 @@ class MultiPartScrollingTextObject extends TextObject {
     }
     if (useButton && mouseIsHoveringOverButton()) {
       if (linkedToFinalObjective && uIManager.allObjectivesButFinalComplete()) {
-        println("hi");
         try {
           sceneManager.goToScene("finalScene");
         }
