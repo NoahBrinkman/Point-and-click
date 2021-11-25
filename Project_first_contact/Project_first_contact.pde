@@ -110,7 +110,7 @@ void setup()
   Scene gardenScene = new Scene("garden", "garden.png");
   MoveToSceneObject gardenToLivingRoom = new MoveToSceneObject("moveToLivingRoomFromGarden", 700, 450, 50, 50, "arrowRight.png", true);
   MultiPartScrollingTextObject pet_dog = new MultiPartScrollingTextObject("*It’s where your dog, Chip, used to sleep in \nwhenever he wasn’t persuading you to let him sleep in your bed together with “mommy” and “daddy”* @*There he lies. Sleeping peacefully* @“You were the only one that loved me unconditionally”@“Despite all the mistakes I made, you still looked at me the same way you did that first time we met” @*You pause for a bit. Reminiscing about something* @“I still remember my kid running inside with you in his arms and crying for me and mommy to let you stay” @“I’m glad I made the right decision” @->Pet your dog<- @“I’m going to miss you, Chip” @**You feel a little lighter**  ", 
-    width / 2 - 120, height -120, "", 17, color(255), 400, 430, "speechBubble.png", 190, 120, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 350, 350, "speechBubble.png", 190, 120, 0.01f);
   MultiPartScrollingTextObject tree = new MultiPartScrollingTextObject("*The old tree and the swing were meant for your son* @“I worked on the swing for the whole summer. Yet, ended up giving up and using a good old tire” @*You laugh to yourself* @“So much work and we used it so little…” ", 
     width / 2 - 120, height -120, "", 17, color(255), 110, 490, "speechBubble.png", 190, 120, 0.01f);
   gardenScene.addTextObject(pet_dog);
