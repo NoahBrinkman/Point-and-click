@@ -20,6 +20,7 @@ class RequireObject extends TextObject {
       sceneManager.getCurrentScene().removeFromTextObjecs(this);
     } else {
       super.mouseClicked();
+      soundManager.playSound(soundManager.lockedDoorSFX);
     }
   } 
 }

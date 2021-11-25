@@ -4,6 +4,7 @@ class Objective extends ImageInScene {
   private boolean isComplete;
   private TextObject textObjectToComplete;
   private boolean isFinalObjective;
+  private boolean playSound = true;
   
   Objective(String imageName, int x,int y,int imageWidth,int imageHeight,String completedImageName,TextObject textObjectToCompleteRef){
     super(imageName,x,y,imageWidth,imageHeight);
@@ -30,6 +31,10 @@ class Objective extends ImageInScene {
     if(textObjectToComplete.hasBeenCompletedOnce){
       isComplete = true;
       super.imageToLoad = completedImage;
+      if(playSound) {
+      soundManager.playSound(soundManager.objectiveCompleteSFX);
+      playSound = false;
+      }
     }
   }
   
