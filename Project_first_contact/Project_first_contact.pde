@@ -67,7 +67,7 @@ void setup()
   MoveToSceneObject tostudyRoom = new MoveToSceneObject("moveTostudyRoom", 750, 500, 50, 50, "arrowRight.png", "studyRoom");
   livingRoomScene.addGameObject(tostudyRoom);
   MultiPartScrollingTextObject couch = new MultiPartScrollingTextObject("*Looking around, you see your classy old couch*@“The only place where I would routinely spend time with family”@“If you could call that “spending time with family”, I mean. We just sat on the sofa watching TV.\nCompletely silent, practically not interacting at all”", 
-    width / 2 - 120, height -120, "", 17, color(255), 200, 470, "speechBubble.png", 190, 120, 0.01f);
+    width / 2 - 120, height -120, "", 17, color(255), 470, 560, "speechBubble.png", 190, 120, 0.01f);
   livingRoomScene.addTextObject(couch);
   MoveToSceneObject toGarden = new MoveToSceneObject("moveToGarden", 215, 600, 50, 50, "arrowLeft.png", "garden");
 
